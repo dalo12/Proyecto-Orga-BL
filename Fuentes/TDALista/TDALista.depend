@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1568242027 source:/home/diego/Documentos/PROGRAMAS EN C/TDAListaa/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1567813722 /home/diego/Documentos/PROGRAMAS EN C/TDAListaa/lista.h
+
+1568241398 source:/home/diego/Documentos/PROGRAMAS EN C/TDAListaa/main.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
