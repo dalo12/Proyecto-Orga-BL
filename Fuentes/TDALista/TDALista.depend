@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1568346105 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/TDALista/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1568342145 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/TDALista/lista.h
+
+1568346137 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/TDALista/main.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+

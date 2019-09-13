@@ -24,8 +24,8 @@ extern void l_insertar(tLista l, tPosicion p, tElemento e){//Agrega una celda en
     aux->elemento=e;//Guardo el elemento
     aux->siguiente=p->siguiente;
     p->siguiente=aux;
-    int *ele=(int*)aux->elemento;
-    printf(" elemento %d \n", *ele);
+//    int *ele=(int*)aux->elemento;
+    //printf(" elemento %d \n", *ele);
 
 }
 
@@ -38,7 +38,10 @@ extern void l_insertar(tLista l, tPosicion p, tElemento e){//Agrega una celda en
 //Cont tPos t tLista no tendira 2 punteros a la celda? tengo que eliminar los 2? en necesario el extern?
 
 extern void l_eliminar(tLista l, tPosicion p, void (*fEliminar)(tElemento)){//Elimina la celda siguiente a la pos pasada
+    if(p->siguiente==NULL)
+        exit(LST_POSICION_INVALIDA);
     tPosicion aux;
+
     aux=p->siguiente;//Asigna aux a al nodo siguiente al de la pos pasada
     p->siguiente=aux->siguiente;//P ahora apunta al siguiente de aux es decir se saltea aux
     (*fEliminar)(p->elemento);
@@ -65,8 +68,8 @@ extern void l_destruir(tLista * l, void (*fEliminar)(tElemento)){
 **/
 extern tElemento l_recuperar(tLista l, tPosicion p){
     if(p->elemento==NULL)
-        return LST_POSICION_INVALIDA;
-    return p->elemento;//Retorno el elemento
+        exit(LST_POSICION_INVALIDA);
+    return p->siguiente->elemento;//Retorno el elemento
 
 
 }
@@ -87,7 +90,7 @@ extern tPosicion l_primera(tLista l){
 **/
 extern tPosicion l_siguiente(tLista l, tPosicion p){
     if(p->siguiente==NULL)
-        return LST_NO_EXISTE_SIGUIENTE;
+        exit(LST_NO_EXISTE_SIGUIENTE);
     return p->siguiente;
 
 
@@ -99,8 +102,8 @@ extern tPosicion l_siguiente(tLista l, tPosicion p){
 **/
 extern tPosicion l_anterior(tLista l, tPosicion p){
     tLista aux;
-    if(l->siguiente=p)//Si la lista es vacia devuelvo el error
-        return LST_NO_EXISTE_ANTERIOR;
+    if(l->siguiente==p )//Si la lista es vacia devuelvo el error
+        exit(LST_NO_EXISTE_ANTERIOR);
     else{
         while(l->siguiente!=p){//Si la lista no es vacio la recorro hasta encontrar la pos anterior de p
             aux=l->siguiente;
@@ -116,16 +119,14 @@ extern tPosicion l_anterior(tLista l, tPosicion p){
  Si L es vacía, primera(L) = ultima(L) = fin(L).
 **/
 extern tPosicion l_ultima(tLista l){
-    tLista aux;
-    if(l->siguiente==NULL)//Si la lista es vacia retorno el nodo dami
+    tLista aux=l;
+    tLista anterior=l->siguiente;
         aux=l->siguiente;
-    else{
-        while(l->siguiente!=l_fin(l)){//Si la lista no es vacio la recorro hasta encontrar la ultima celda
-            aux=l->siguiente;   //¿Es correcto usar l_fin?
-            l->siguiente=aux->siguiente;
+        while(aux->siguiente!=NULL){//Si la lista no es vacio la recorro hasta encontrar la ultima celda
+            anterior=aux;
+            aux=aux->siguiente;
         }
-    }
-    return aux;
+    return anterior;
 
 }
 
@@ -134,16 +135,11 @@ extern tPosicion l_ultima(tLista l){
  Si L es vacía, primera(L) = ultima(L) = fin(L).
 **/
 extern tPosicion l_fin(tLista l){
-    tLista aux;
-    if(l->siguiente==NULL)//Si la lista es vacia retorno el nodo dami
-        return l->siguiente;//Puedo retornar NULL?
-
-    else{
-        while(l->siguiente!=NULL){//Si la lista no es vacio la recorro hasta encontrar la pos final
-            aux=l->siguiente;
-            l->siguiente=aux->siguiente;
+    tLista aux=l;
+        while(aux->siguiente!=NULL){//Si la lista no es vacio la recorro hasta encontrar la pos final
+            aux=aux->siguiente;
         }
-        return aux;
+    return aux;
     }
-}
+
 

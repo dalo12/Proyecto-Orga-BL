@@ -5,12 +5,13 @@
 void eliminarElemento(int* e);
 void insertar(tLista l);
 void imprimir(tLista l);
-tLista l;
 
 int main()
 {
     int res = 0;
-    int e;
+    //int *e=(int *)malloc(sizeof(int));
+    tLista l;
+
 
     printf("----BIENVENIDO AL SIMULADOR DE LISTA----");
     do{
@@ -25,58 +26,51 @@ int main()
             }
             case 2: {
                 printf("Ingrese el entero a insertar: \n");
-                scanf("%i", &e);
-                l_insertar(l, l_ultima(l), e);
+                int *e=(int *)malloc(sizeof(int));
+                scanf("%d", e);
+
+               //*aux=e;
+               //l_insertar(l, l, e);
+                insertar(l);
                 break;
             }
             case 3: {
                 imprimir(l);
                 break;
             }
-            case 4: {
-                l_destruir(l, eliminarElemento);
+            /*case 4: {
+                l_destruir(&l, eliminarElemento);
                 printf("Lista destruida con éxito.\nSaliendo...");
                 break;
-            }
+            }*/
         }
     }while((res > 0) && (res < 5));
 
-/* No sé que onda esto
-    //int e=5;
-    tLista l;
-    (crear_lista(&l));
-    //l_insertar(l,l,&e);
-   // printf("Hello world!  %d \n",e);
-    insertar(l);
-   //imprimir(l);
-    //l_destruir(l,elimanarElemento);
-   //imprimir(l);
-
-*/
     return 0;
 }
 
 void imprimir(tLista l){
     tLista aux;
+
         aux=l_primera(l);
-        //int *ele=(int*)l_recuperar(l,aux);
-        //printf(" Numero %d \n",*ele);
-        while(aux!=2){
-            //int *ele=(int*)l_recuperar(l,aux);
-           // printf(" %d \n",l_recuperar(l,aux));
-           // printf(" Numero %d \n",*ele);
+        while(aux!=l_fin(l)){
+            int *ele=(int*)l_recuperar(l,aux);
+            printf(" Numero11 %d \n",*ele);
             aux=l_siguiente(l,aux);
-    }
+        }
+        int *ele=(int*)l_fin(l)->elemento;
+        printf(" Numero sali %d \n",*ele);
 }
 void insertar(tLista l){
-    int e;
+    int *e;
     for(int i=0;i<20;i++){
-        e=i+5;//Elemento a insertar
-        l_insertar(l,l,&e);//inserto el elemento en la lista
+        e=(int *)malloc(sizeof(int));
+        *e=i+8;//Elemento a insertar
+        l_insertar(l,l,e);//inserto el elemento en la lista
     }
 
 }
 
 void eliminarElemento(int* e){
-   free(*e);
+   free((int *)e);
 }
