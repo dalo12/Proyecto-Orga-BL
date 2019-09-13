@@ -4,8 +4,18 @@
 void elimanarElemento(int* e);
 void insertar(tLista l);
 void imprimir(tLista l);
+
 int main()
 {
+    int res = 0;
+
+    printf("----BIENVENIDO AL SIMULADOR DE LISTA----");
+    do{
+        printf("Seleccione una opción:\n\t1: Crear lista de enteros.\n\t2: Insertar entero.\n\t3: Imprimir lista por pantalla.\n\t4: Salir.");
+        scanf("%d", &res);
+    }while((res > 0) && (res < 5));
+
+/* No sé que onda esto
     //int e=5;
     tLista l;
     (crear_lista(&l));
@@ -16,7 +26,7 @@ int main()
     //l_destruir(l,elimanarElemento);
    //imprimir(l);
 
-
+*/
     return 0;
 }
 void imprimir(tLista l){
