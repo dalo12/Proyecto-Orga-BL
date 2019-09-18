@@ -16,26 +16,30 @@ int main()
 
     printf("----BIENVENIDO AL SIMULADOR DE LISTA----");
     do{
-        printf("\nSeleccione una opción:\n\t1: Crear lista de enteros.\n\t2: Insertar entero.\n\t3: Imprimir lista por pantalla.\n\t4: Eliminar Lista.\n\t5: Salir.\n\n");
-        scanf("%d", &res);
+        do{
+            printf("\nSeleccione una opción:\n\t1: Crear lista de enteros.\n\t2: Insertar entero.\n\t3: Imprimir lista por pantalla.\n\t4: Eliminar Lista.\n\t5: Salir.\n\n");
+            scanf("%d", &res);
+        }while(res<1 || res>5);
 
         switch(res){
             case 1: {
                 if(cont==0){
                     crear_lista(&l);
                     printf("Lista creada con éxito!\n");
-                    cont++;
+                    cont = 1;
                 }
                 else{
-                    printf("La lista ya fue creada");
+                    printf("Ya hay una lista creada\n");
                 }
                 break;
             }
             case 2: {
-                if(cont>0){
-                    printf("Ingrese el entero a insertar, ingrese -1 para terminar: \n");
-                    scanf("%i ", &cont);
-                    while(cont!=-1){
+                if(cont==1){
+                    printf("Ingrese el entero a insertar: \n");
+                    int *e=(int *)malloc(sizeof(int));
+                    scanf("%i", e);
+                    l_insertar(l, l_fin(l), e);
+                    /*while(cont!=-1){
                         int *e=(int *)malloc(sizeof(int));
                         *e=cont;
                         if(cont!=-1){
@@ -43,37 +47,37 @@ int main()
                             scanf("%i ", &cont);
                         }
                 //insertar(l);
-                }
+                }*/
                 //system("clear");
-                cont=1;
+                //cont=1;
                 }
                 else
-                    printf("Deve crear la lista antes de insertar");
+                    printf("Debe crear la lista antes de insertar un elemento\n");
                 break;
             }
             case 3: {
-                if(cont>0){
+                if(cont==1){
                     imprimir(l);
-                    printf("\n hacia atras \n");
-                    recorrerParaAtras(l);
+                    //printf("\n hacia atras \n");
+                    //recorrerParaAtras(l);
                 }
                 else
-                    printf("Deve crear la lista antes de imprimirla");
+                    printf("Debe crear la lista antes de imprimirla\n");
                 break;
             }
             case 4: {
-            if(cont>0){
+            if(cont==1){
                 l_destruir(&l, (void *)eliminarElemento);
                 printf("Lista destruida con éxito.\n");
-                cont--;
+                cont = 0;
             }
             else{
-                printf("Deve crear la lista para poder eliminarla");
+                printf("Debe crear la lista para poder eliminarla\n");
                 }
             break;
             }
         }
-    }while((res > 0) && (res < 5));
+    }while(res != 5);
 
     return 0;
 }
