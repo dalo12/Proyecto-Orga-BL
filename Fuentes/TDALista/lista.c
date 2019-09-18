@@ -53,13 +53,17 @@ extern void l_eliminar(tLista l, tPosicion p, void (*fEliminar)(tElemento)){//El
  Los elementos almacenados en las posiciones son eliminados mediante la función fEliminar parametrizada.
 **/
 extern void l_destruir(tLista * l, void (*fEliminar)(tElemento)){
-    tLista aux;//Lista auxiliar
-    while((*l)->siguiente!=NULL){//Si la lista no es vacia la recorro y elimino
-        aux=(*l)->siguiente;
-        (*l)->siguiente=aux->siguiente;
-        (*fEliminar)(aux->elemento);//Elimino el elemento dentro de la celda
-        free(aux);//Elimino la celda
+    tLista aux=(*l)->siguiente;//Lista auxiliar
+    tLista aEliminar;
+    while(aux!=NULL){//Si la lista no es vacia la recorro y elimino
+        aEliminar=aux;
+        aux=aux->siguiente;
+        (*l)->siguiente=aux;
+        (*fEliminar)(aEliminar->elemento);//Elimino el elemento dentro de la celda
+        free(aEliminar);//Elimino la celda
     }
+    //free(l);
+    //printf("Elementos de la lista %d \n",(*l))
 }
 
  /**
@@ -67,11 +71,9 @@ extern void l_destruir(tLista * l, void (*fEliminar)(tElemento)){
  Si P es fin(L), finaliza indicando LST_POSICION_INVALIDA.
 **/
 extern tElemento l_recuperar(tLista l, tPosicion p){
-    if(p->elemento==NULL)
+    if(p->siguiente==NULL || p==NULL)
         exit(LST_POSICION_INVALIDA);
     return p->siguiente->elemento;//Retorno el elemento
-
-
 }
 
 /**
@@ -89,7 +91,7 @@ extern tPosicion l_primera(tLista l){
  Si P es fin(L), finaliza indicando LST_NO_EXISTE_SIGUIENTE.
 **/
 extern tPosicion l_siguiente(tLista l, tPosicion p){
-    if(p->siguiente==NULL)
+    if(p->siguiente==NULL || p==NULL)
         exit(LST_NO_EXISTE_SIGUIENTE);
     return p->siguiente;
 
@@ -101,16 +103,15 @@ extern tPosicion l_siguiente(tLista l, tPosicion p){
  Si P es primera(L), finaliza indicando LST_NO_EXISTE_ANTERIOR.
 **/
 extern tPosicion l_anterior(tLista l, tPosicion p){
-    tLista aux;
-    if(l->siguiente==p )//Si la lista es vacia devuelvo el error
+    tLista aux=l;
+    if(l==p || p==NULL)//Si la lista es vacia devuelvo el error
         exit(LST_NO_EXISTE_ANTERIOR);
     else{
-        while(l->siguiente!=p){//Si la lista no es vacio la recorro hasta encontrar la pos anterior de p
-            aux=l->siguiente;
-            l->siguiente=aux->siguiente;
+        while(aux->siguiente!=p){//Si la lista no es vacio la recorro hasta encontrar la pos anterior de p
+            aux=aux->siguiente;
         }
-    return aux;
     }
+    return aux;
 
 }
 
