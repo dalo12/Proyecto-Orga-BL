@@ -24,8 +24,6 @@ extern void l_insertar(tLista l, tPosicion p, tElemento e){//Agrega una celda en
     aux->elemento=e;//Guardo el elemento
     aux->siguiente=p->siguiente;
     p->siguiente=aux;
-//    int *ele=(int*)aux->elemento;
-    //printf(" elemento %d \n", *ele);
 
 }
 
@@ -38,10 +36,9 @@ extern void l_insertar(tLista l, tPosicion p, tElemento e){//Agrega una celda en
 //Cont tPos t tLista no tendira 2 punteros a la celda? tengo que eliminar los 2? en necesario el extern?
 
 extern void l_eliminar(tLista l, tPosicion p, void (*fEliminar)(tElemento)){//Elimina la celda siguiente a la pos pasada
+    tPosicion aux;
     if(p->siguiente==NULL)
         exit(LST_POSICION_INVALIDA);
-    tPosicion aux;
-
     aux=p->siguiente;//Asigna aux a al nodo siguiente al de la pos pasada
     p->siguiente=aux->siguiente;//P ahora apunta al siguiente de aux es decir se saltea aux
     (*fEliminar)(p->elemento);
@@ -62,8 +59,6 @@ extern void l_destruir(tLista * l, void (*fEliminar)(tElemento)){
         (*fEliminar)(aEliminar->elemento);//Elimino el elemento dentro de la celda
         free(aEliminar);//Elimino la celda
     }
-    //free(l);
-    //printf("Elementos de la lista %d \n",(*l))
 }
 
  /**

@@ -58,8 +58,8 @@ int main()
             case 3: {
                 if(cont==1){
                     imprimir(l);
-                    //printf("\n hacia atras \n");
-                    //recorrerParaAtras(l);
+                   // printf("\n hacia atras \n");
+               2    // recorrerParaAtras(l);
                 }
                 else
                     printf("Debe crear la lista antes de imprimirla\n");
@@ -69,7 +69,7 @@ int main()
             if(cont==1){
                 l_destruir(&l, (void *)eliminarElemento);
                 printf("Lista destruida con éxito.\n");
-                cont = 0;
+                cont=0;
             }
             else{
                 printf("Debe crear la lista para poder eliminarla\n");
@@ -90,8 +90,11 @@ void imprimir(tLista l){
             int *ele=(int*)l_recuperar(l,aux);
             printf("%d , ",*ele);
             aux=l_siguiente(l,aux);
+
         }
         printf("] ");
+        int *ele=(int*)l_recuperar(l,l_primera(l));
+        printf(" primera %i \n",*ele);
         if(l->siguiente==NULL)
             printf("La lista esta vacia \n");
 }
@@ -118,11 +121,14 @@ void recorrerParaAtras(tLista l){
             printf("%i , ",*ele);
             aux=l_anterior(l,aux);
         }
-        int *ele=(int*)l_recuperar(l,aux);
-        printf("%i",*ele);
+         if(l==NULL)
+            printf("La lista esta vacia\n");
+        else{
+            int *ele=(int*)l_recuperar(l,aux);
+            printf("%i",*ele);
+        }
         printf("] ");
-        if(l->siguiente==NULL)
-            printf("La lista esta vacia \n");
+
 }
 
 
