@@ -76,7 +76,7 @@ extern tElemento l_recuperar(tLista l, tPosicion p){
  Si L es vacía, primera(L) = ultima(L) = fin(L).
 **/
 extern tPosicion l_primera(tLista l){
-    return l->siguiente;//Devuelve el nodo dami ??????
+    return l;//Devuelve el nodo dami ??????
 
 
 }
@@ -136,5 +136,4 @@ extern tPosicion l_fin(tLista l){
         }
     return aux;
     }
-
 
