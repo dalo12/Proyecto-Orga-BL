@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1569452823 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/TDAArbol/main.c
+	<stdio.h>
+	<stdlib.h>
+
