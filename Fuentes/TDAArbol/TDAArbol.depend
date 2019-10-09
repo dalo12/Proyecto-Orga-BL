@@ -3,3 +3,19 @@
 	<stdio.h>
 	<stdlib.h>
 
+1570651446 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/main.c
+	<stdio.h>
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1570024236 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/arbol.h
+	"lista.h"
+
+1570489545 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/lista.h
+
+1570489545 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
