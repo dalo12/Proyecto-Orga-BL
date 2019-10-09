@@ -83,8 +83,8 @@ Una referencia al árbol creado es referenciado en *A.
 **/
 
 extern void crear_arbol(tArbol * a){
-    *a=(tArbol)malloc(sizeof(struct arbol));//Asigno memoria a la estructura arbol
-    (*a)->raiz=NULL;//Raiz es nulo
+    *a = (tArbol) malloc(sizeof(struct arbol));//Asigno memoria a la estructura arbol
+    (*a)->raiz = NULL;//Raiz es nulo
 }
 
 /**
@@ -94,12 +94,19 @@ Si A no es vacío, finaliza indicando ARB_OPERACION_INVALIDA.
 
 extern void crear_raiz(tArbol a, tElemento e){//TENGO QUE CREAR ESPACIO PARA EL NODO O ESO PASA CUANDO HAGO EL MALLOC DE tArbol?
     tLista l;
+    tNodo root = (tNodo) malloc(sizeof(struct nodo));
+
     crear_lista(&l);//crear el nodo
-    if(a->raiz==NULL)
+    if(a->raiz != NULL)
         exit(ARB_OPERACION_INVALIDA);
-    a->raiz->elemento=e;
-    a->raiz->padre=NULL;
-    a->raiz->hijos=l;
+
+    root->elemento = e;
+    root->padre=NULL;
+    root->hijos=l;
+    a->raiz = root;
+    //a->raiz->elemento=e;
+    //a->raiz->padre=NULL;
+    //a->raiz->hijos=l;
 
 
 }

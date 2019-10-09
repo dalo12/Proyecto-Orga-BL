@@ -5,7 +5,7 @@
 	"arbol.h"
 	"lista.h"
 
-1570651446 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/main.c
+1570660541 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/main.c
 	<stdio.h>
 	<stdlib.h>
 	"arbol.h"
@@ -32,6 +32,11 @@
 	"lista.h"
 
 1570657245 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/TDAArbol/arbol.c
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1570660512 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/arbol.c
 	<stdlib.h>
 	"arbol.h"
 	"lista.h"
