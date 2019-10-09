@@ -83,8 +83,8 @@ Una referencia al árbol creado es referenciado en *A.
 **/
 
 extern void crear_arbol(tArbol * a){
-    (a*)=(tArbol)malloc(sizeof(struct arbol));//Asigno memoria a la estructura arbol
-    (a*)->raiz=NULL;//Raiz es nulo
+    *a=(tArbol)malloc(sizeof(struct arbol));//Asigno memoria a la estructura arbol
+    (*a)->raiz=NULL;//Raiz es nulo
 }
 
 /**
@@ -94,7 +94,7 @@ Si A no es vacío, finaliza indicando ARB_OPERACION_INVALIDA.
 
 extern void crear_raiz(tArbol a, tElemento e){//TENGO QUE CREAR ESPACIO PARA EL NODO O ESO PASA CUANDO HAGO EL MALLOC DE tArbol?
     tLista l;
-    crear_lista(&l)//crear el nodo
+    crear_lista(&l);//crear el nodo
     if(a->raiz==NULL)
         exit(ARB_OPERACION_INVALIDA);
     a->raiz->elemento=e;
@@ -119,14 +119,13 @@ extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
     tNodo aInsertar=(tNodo)malloc(sizeof(struct nodo));
     aInsertar->padre=np;
     aInsertar->elemento=e;
-    aInsertar->
 
     if(nh==NULL)//Si el hermano es nulo inserto al final
         l_insertar(listaHijos,l_fin(listaHijos),aInsertar);
     else{//Si no es nulo recorro la lista de hijos hasta encontrar
-        while(l_siguiente(listaHijos)!=NULL && nh!=aux){
+        while(aux!=NULL && nh!=aux){
             insert=aux;//A pos anterior le asigno aux
-            aux->siguiente=aux->siguiente;
+            aux=l_siguiente(listaHijos,aux);
         }
          if(nh==aux)//Si encuentro al hermano inserto en la lista
             l_insertar(listaHijos,insert,aInsertar);
@@ -145,11 +144,30 @@ extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
 **/
 
 extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
+    tLista listaHijo;
+    tPosicion posLista;
+    int cont=0;
     if(a->raiz==n){//Si raiz es n
-
-
+        listaHijo=n->hijos;
+        posLista=l_primera(listaHijo);
+        while(posLista!=NULL && cont<2){
+            if(l_siguiente(listaHijo,posLista)!=NULL){
+                cont++;
+                posLista=l_siguiente(listaHijo,posLista);
+            }
+        }
+        if(cont>=2){
+            exit(ARB_OPERACION_INVALIDA);
+        }
+        else
+            if(cont==1){
+                free(a->raiz->elemento);
+                a->raiz->hijos=NULL;
+                n->padre=NULL;
+                a->raiz=n;
+            }
     }
-    else{
+    else{//Preguntar
 
 
 
@@ -177,7 +195,7 @@ Recupera y retorna el elemento del nodo N.
 */
 
 extern tElemento a_recuperar(tArbol a, tNodo n){
-
+    return n->elemento;
 }
 
 
