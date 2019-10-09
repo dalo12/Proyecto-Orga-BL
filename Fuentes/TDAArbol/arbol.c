@@ -123,15 +123,16 @@ extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
     if(nh==NULL)//Si el hermano es nulo inserto al final
         l_insertar(listaHijos,l_fin(listaHijos),aInsertar);
     else{//Si no es nulo recorro la lista de hijos hasta encontrar
-        while(aux!=NULL && nh!=aux){
+        while(aux!=NULL && nh!=aux->elemento){
             insert=aux;//A pos anterior le asigno aux
             aux=l_siguiente(listaHijos,aux);
         }
-         if(nh==aux)//Si encuentro al hermano inserto en la lista
+         if(nh==aux->elemento)//Si encuentro al hermano inserto en la lista
             l_insertar(listaHijos,insert,aInsertar);
         else
             exit(ARB_POSICION_INVALIDA);//Si no error
     }
+    return aInsertar;
 }
 
 
