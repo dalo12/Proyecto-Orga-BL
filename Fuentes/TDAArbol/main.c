@@ -10,7 +10,7 @@ int main(){
     tArbol arbol;
     crear_arbol(&arbol);
 
-    estadoActual(arbol);
+    //estadoActual(arbol);
     return 0;
 }
 
