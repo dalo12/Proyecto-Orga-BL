@@ -115,18 +115,15 @@ extern tPosicion l_anterior(tLista l, tPosicion p){
  Si L es vacía, primera(L) = ultima(L) = fin(L).
 **/
 extern tPosicion l_ultima(tLista l){
-    tLista aux=l;
-    tLista anterior=l->siguiente;
-        aux=l->siguiente;
-        while(aux->siguiente!=NULL){//Si la lista no es vacio la recorro hasta encontrar la ultima celda
-            anterior=aux;
-            aux=aux->siguiente;
-        }
-    return anterior;
+    tPosicion aux=l;
+    while(aux->siguiente!=NULL){//Si la lista no es vacio la recorro hasta encontrar la ultima celda
+        aux=aux->siguiente;
+    }
+    return aux;
 }
 
  /**
- Recupera y retorna la posición fin de L.
+ Recupera y retorna la posición fin de L
  Si L es vacía, primera(L) = ultima(L) = fin(L).
 **/
 extern tPosicion l_fin(tLista l){

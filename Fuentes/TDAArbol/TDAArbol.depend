@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1570656984 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/TDAArbol/main.c
+1570749992 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/TDAArbol/main.c
 	<stdio.h>
 	<stdlib.h>
 	"arbol.h"
 	"lista.h"
 
-1570651446 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/main.c
+1570660541 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/main.c
 	<stdio.h>
 	<stdlib.h>
 	"arbol.h"
@@ -21,7 +21,7 @@
 	<stdlib.h>
 	"lista.h"
 
-1569855320 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/TDAArbol/lista.c
+1570750051 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/TDAArbol/lista.c
 	<stdio.h>
 	<stdlib.h>
 	"lista.h"
@@ -31,7 +31,12 @@
 1569452989 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/TDAArbol/arbol.h
 	"lista.h"
 
-1570657752 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/TDAArbol/arbol.c
+1570683379 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/TDAArbol/arbol.c
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1570660512 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/arbol.c
 	<stdlib.h>
 	"arbol.h"
 	"lista.h"

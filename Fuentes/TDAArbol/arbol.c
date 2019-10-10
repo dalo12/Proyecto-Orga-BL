@@ -83,8 +83,8 @@ Una referencia al árbol creado es referenciado en *A.
 **/
 
 extern void crear_arbol(tArbol * a){
-    *a=(tArbol)malloc(sizeof(struct arbol));//Asigno memoria a la estructura arbol
-    (*a)->raiz=NULL;//Raiz es nulo
+    *a = (tArbol) malloc(sizeof(struct arbol));//Asigno memoria a la estructura arbol
+    (*a)->raiz = NULL;//Raiz es nulo
 }
 
 /**
@@ -94,12 +94,19 @@ Si A no es vacío, finaliza indicando ARB_OPERACION_INVALIDA.
 
 extern void crear_raiz(tArbol a, tElemento e){//TENGO QUE CREAR ESPACIO PARA EL NODO O ESO PASA CUANDO HAGO EL MALLOC DE tArbol?
     tLista l;
+    tNodo root = (tNodo) malloc(sizeof(struct nodo));
+
     crear_lista(&l);//crear el nodo
-    if(a->raiz==NULL)
+    if(a->raiz != NULL)
         exit(ARB_OPERACION_INVALIDA);
-    a->raiz->elemento=e;
-    a->raiz->padre=NULL;
-    a->raiz->hijos=l;
+
+    root->elemento = e;
+    root->padre=NULL;
+    root->hijos=l;
+    a->raiz = root;
+    //a->raiz->elemento=e;
+    //a->raiz->padre=NULL;
+    //a->raiz->hijos=l;
 
 
 }
@@ -123,15 +130,16 @@ extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
     if(nh==NULL)//Si el hermano es nulo inserto al final
         l_insertar(listaHijos,l_fin(listaHijos),aInsertar);
     else{//Si no es nulo recorro la lista de hijos hasta encontrar
-        while(aux!=NULL && nh!=aux){
+        while(aux!=NULL && nh!=aux->elemento){
             insert=aux;//A pos anterior le asigno aux
             aux=l_siguiente(listaHijos,aux);
         }
-         if(nh==aux)//Si encuentro al hermano inserto en la lista
+         if(nh==aux->elemento)//Si encuentro al hermano inserto en la lista
             l_insertar(listaHijos,insert,aInsertar);
         else
             exit(ARB_POSICION_INVALIDA);//Si no error
     }
+    return aInsertar;
 }
 
 
