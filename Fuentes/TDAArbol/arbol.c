@@ -188,18 +188,17 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
         tNodo padre=n->padre;
         posListaPadre=l_primera(listaPadre);
         posLista=l_primera(listaHijo);
+        posAnterior pos;
         int cont=0;
         while(posListaPadre!=NULL && cont!=1){
             if(l_recuperar(listaPadre,posListaPadre)==padre){
                 cont=1;
             }
             else{
+                pos=posListaPadre;
                 posListaPadre=l_siguiente(listaPadre,posListaPadre);
 
             }
-
-
-
         }
         while(posLista!=NULL){
             tNodo aInsertar=l_recuperar(listaHijo,posLista);
@@ -210,7 +209,7 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
         }
 
 
-
+    //Falta completar
 
     }
 
