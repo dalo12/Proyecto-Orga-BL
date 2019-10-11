@@ -14,7 +14,7 @@ static void aux_destruir(tNodo n, void(*fEliminar)(tElemento)){
     tNodo h;
 
     /*Este while actúa igual que un foreach para la lista de hijos de n*/
-    while(p != l_fin(l)){ // o *p != NULL ?
+    while(p != l_fin(l)){ // o p != NULL ?
         h = l_recuperar(l, p); //suponiendo que la lista l es una lista de tNodo
         aux_destruir(h, fEliminar);
         p = l_siguiente(l, p);
@@ -126,6 +126,9 @@ extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
     tNodo aInsertar=(tNodo)malloc(sizeof(struct nodo));
     aInsertar->padre=np;
     aInsertar->elemento=e;
+    tLista hijos_de_a_insertar;
+    crear_lista(&hijos_de_a_insertar);
+    aInsertar->hijos = hijos_de_a_insertar;
 
     if(nh==NULL)//Si el hermano es nulo inserto al final
         l_insertar(listaHijos,l_fin(listaHijos),aInsertar);
