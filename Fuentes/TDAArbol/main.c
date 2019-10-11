@@ -17,8 +17,8 @@ int main(){
     }
     estadoActual(ar);
 
-  /*  a_destruir(&ar, fEliminar);
-    estadoActual(ar);*/
+    a_destruir(&ar, fEliminar);
+    //estadoActual(ar);
     return 0;
 }
 

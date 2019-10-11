@@ -10,20 +10,22 @@ recorrido en preorden.
 **/
 static void aux_destruir(tNodo n, void(*fEliminar)(tElemento)){
     tLista l = n->hijos;
-    tPosicion p = l_primera(l);
-    tNodo h;
+    if(l != NULL){
+        tPosicion p = l_primera(l);
+        tNodo h;
 
-    /*Este while actúa igual que un foreach para la lista de hijos de n*/
-    while(p != l_fin(l)){ // o p != NULL ?
-        h = l_recuperar(l, p); //suponiendo que la lista l es una lista de tNodo
-        aux_destruir(h, fEliminar);
-        p = l_siguiente(l, p);
+        /*Este while actúa igual que un foreach para la lista de hijos de n*/
+        while(p != l_fin(l)){ // o NULL ? No, l_fin(l) retorna la última componente de la lista, que es visitada en el ciclo anterior en el l_recuperar().
+            h = l_recuperar(l, p); //suponiendo que la lista l es una lista de tNodo
+            aux_destruir(h, fEliminar);
+            p = l_siguiente(l, p);
+        }
+
+        n->hijos = NULL;
+        n->padre = NULL;
+        (fEliminar)(n->elemento);
+        free(n);
     }
-
-    n->hijos = NULL;
-    n->padre = NULL;
-    (fEliminar)(n->elemento);
-    free(n);
 }
 
 /**
