@@ -11,6 +11,13 @@ int main(){
     tArbol ar;
     crear_arbol(&ar);
     crear_raiz(ar, (int *) 15);
+    //tNodo raiz=a_raiz(ar);
+    //tLista hijos=a_hijos(ar,raiz);
+    //tNodo n=(tNodo)l_recuperar(hijos,l_siguiente(hijos,hijos));
+    //int aInsertar=40;
+   // a_insertar(ar,a_raiz(ar),n,(tElemento)aInsertar);
+    //estadoActual(arbol);
+   // estadoActual(ar);
     tNodo h = NULL;
     for(int i=0; i<20; i++){
         h = a_insertar(ar, ar->raiz, NULL, (int *) i);

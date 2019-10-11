@@ -128,7 +128,7 @@ extern tPosicion l_ultima(tLista l){
 }
 
  /**
- Recupera y retorna la posición fin de L.
+ Recupera y retorna la posición fin de L
  Si L es vacía, primera(L) = ultima(L) = fin(L).
 **/
 extern tPosicion l_fin(tLista l){

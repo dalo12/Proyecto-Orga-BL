@@ -159,6 +159,8 @@ extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
 extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
     tLista listaHijo;
     tPosicion posLista;
+    tPosicion posListaPadre;
+    tLista listaPadre;
     int cont=0;
     if(a->raiz==n){//Si raiz es n
         listaHijo=n->hijos;
@@ -181,6 +183,31 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
             }
     }
     else{//Preguntar
+        listaHijo=n->hijos;
+        listaPadre=n->padre->hijos;
+        tNodo padre=n->padre;
+        posListaPadre=l_primera(listaPadre);
+        posLista=l_primera(listaHijo);
+        int cont=0;
+        while(posListaPadre!=NULL && cont!=1){
+            if(l_recuperar(listaPadre,posListaPadre)==padre){
+                cont=1;
+            }
+            else{
+                posListaPadre=l_siguiente(listaPadre,posListaPadre);
+
+            }
+
+
+
+        }
+        while(posLista!=NULL){
+            tNodo aInsertar=l_recuperar(listaHijo,posLista);
+            l_insertar(listaPadre,posListaPadre,aInsertar);
+            posLista=l_siguiente(listaHijo,posLista);
+            posListaPadre=l_siguiente(listaPadre,posListaPadre);
+
+        }
 
 
 
