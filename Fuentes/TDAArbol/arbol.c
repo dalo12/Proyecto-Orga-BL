@@ -14,7 +14,7 @@ static void aux_destruir(tNodo n, void(*fEliminar)(tElemento)){
     tNodo h;
 
     /*Este while actúa igual que un foreach para la lista de hijos de n*/
-    while(p != l_fin(l)){ // o *p != NULL ?
+    while(p != l_fin(l)){ // o p != NULL ?
         h = l_recuperar(l, p); //suponiendo que la lista l es una lista de tNodo
         aux_destruir(h, fEliminar);
         p = l_siguiente(l, p);
@@ -126,6 +126,9 @@ extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
     tNodo aInsertar=(tNodo)malloc(sizeof(struct nodo));
     aInsertar->padre=np;
     aInsertar->elemento=e;
+    tLista hijos_de_a_insertar;
+    crear_lista(&hijos_de_a_insertar);
+    aInsertar->hijos = hijos_de_a_insertar;
 
     if(nh==NULL)//Si el hermano es nulo inserto al final
         l_insertar(listaHijos,l_fin(listaHijos),aInsertar);
@@ -183,12 +186,24 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
         tNodo padre=n->padre;
         posListaPadre=l_primera(listaPadre);
         posLista=l_primera(listaHijo);
-        while(posListaPadre!=NULL){
-            if(l_recuperar(listaPadre,posListaPadre));
+        int cont=0;
+        while(posListaPadre!=NULL && cont!=1){
+            if(l_recuperar(listaPadre,posListaPadre)==padre){
+                cont=1;
+            }
+            else{
+                posListaPadre=l_siguiente(listaPadre,posListaPadre);
+
+            }
+
+
 
         }
         while(posLista!=NULL){
-            l_insertar(l);
+            tNodo aInsertar=l_recuperar(listaHijo,posLista);
+            l_insertar(listaPadre,posListaPadre,aInsertar);
+            posLista=l_siguiente(listaHijo,posLista);
+            posListaPadre=l_siguiente(listaPadre,posListaPadre);
 
         }
 
