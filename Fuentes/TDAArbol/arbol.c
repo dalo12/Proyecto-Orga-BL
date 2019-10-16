@@ -33,8 +33,19 @@ static void aux_destruir(tNodo n, void(*fEliminar)(tElemento)){
 Función creada para eliminar un nodo de la lista de hijos, pero no el nodo en sí mismo.
 @param e Elemento a eliminar
 **/
-static void noElimino(void* e){
+static void noElimino(tElemento e){
     //No hago nada
+}
+
+/**
+Función creada para eliminar un nodo, pero sin eliminar a sus hijos (aunque sí a la lista de sus hijos)
+@param n Nodo a liminar
+@param fEliminar Función que elimina el elemento que contiene el nodo n
+**/
+static void eliminarNodo(tElemento e){
+    tNodo n = (tNodo) e;
+    l_destruir(&(n->hijos), &noElimino); //mato al nodo, pero no a sus hijos
+    (n->padre) = NULL;
 }
 
 /**
@@ -97,9 +108,9 @@ Si A no es vacío, finaliza indicando ARB_OPERACION_INVALIDA.
 
 extern void crear_raiz(tArbol a, tElemento e){//TENGO QUE CREAR ESPACIO PARA EL NODO O ESO PASA CUANDO HAGO EL MALLOC DE tArbol?
     tLista l;
-    tNodo root = (tNodo) malloc(sizeof(struct nodo));
+    tNodo root = (tNodo) malloc(sizeof(struct nodo)); //crea el nodo
 
-    crear_lista(&l);//crear el nodo
+    crear_lista(&l);//crear la lista de hijos del nodo
     if(a->raiz != NULL)
         exit(ARB_OPERACION_INVALIDA);
 
@@ -161,6 +172,7 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
     tPosicion pos_hijo = l_primera(n->hijos);
 
     if(n == a->raiz){
+    // ---- CASO 2 ----
         //Cuento los hijos que tiene la raíz
         int cant_hijos = 0;
         while(pos_hijo != l_fin(n->hijos) && cant_hijos < 2){
@@ -172,12 +184,60 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
         if(cant_hijos > 1){
             exit(ARB_OPERACION_INVALIDA);
         }else{
+    // ---- CASO 1 ----
+
             //Sino, la reemplazo por su hijo
 
             tPosicion pos_hijo_unico = l_primera(a->raiz->hijos);
-            //pos_hijo_unico = l_siguiente(a->raiz->hijos, pos_hijo_unico);
-            a->raiz = pos_hijo_unico->elemento; //el elemento de pos_hijo_unico o el del siguiente a este?
+            tNodo hijo_raiz = l_recuperar(a->raiz->hijos, pos_hijo_unico);
+
+            fEliminar(n->elemento);
+            eliminarNodo(n); //elimino al nodo con mi función especial
+
+            a->raiz = hijo_raiz;
+            hijo_raiz->padre = NULL;
         }
+    }else{
+    // ---- CASO 3 ----
+
+        tNodo padre_n = n->padre;
+        tLista lista_hermanos_n = padre_n->hijos;
+
+        //busco la posición de n en la lista de hijos de su padre
+        tPosicion pos_hermano_n = l_primera(lista_hermanos_n);
+        tNodo hermano_n;
+        tPosicion pos_n = NULL;
+        int encontrado = 0;
+
+        while(pos_hermano_n != l_fin(lista_hermanos_n) && !encontrado){
+            hermano_n = l_recuperar(lista_hermanos_n, pos_hermano_n);
+            if(hermano_n == n){ //encontré la pos de n
+                pos_n = pos_hermano_n;
+                encontrado = 1;
+            }
+            pos_hermano_n = l_siguiente(lista_hermanos_n, pos_hermano_n);
+        }
+
+        //agrego los hijos de n a la lista de hijos del padre de n
+        if(pos_n != NULL){ //estará de más esta verificación? Por las dudas ...
+            tLista lista_hijos_n = n->hijos;
+            tPosicion pos_hijo_n = l_primera(lista_hijos_n);
+            tNodo hijo_n;
+
+            while(pos_hijo_n != l_fin(lista_hijos_n)){
+                hijo_n = l_recuperar(lista_hijos_n, pos_hijo_n);
+                printf("%d es hijo de %d\n", hijo_n->elemento, n->elemento);
+                hijo_n->padre = padre_n;
+                l_insertar(lista_hermanos_n, pos_n, hijo_n);
+                printf("Ahora %d es hijo de %d\n", hijo_n->elemento, hijo_n->padre->elemento);
+                pos_hijo_n = l_siguiente(lista_hijos_n, pos_hijo_n);
+            }
+        }
+        //elimino a n de la lista de hijos del padre
+        fEliminar(n->elemento);
+        l_eliminar(lista_hermanos_n, pos_n, &eliminarNodo);
+        tPosicion pos = l_recuperar(n->hijos, l_primera(n->hijos));
+        printf("¿n dejó de existir? %d %d %d\n", n->elemento, n->padre->elemento, pos->elemento);
     }
 
 /*

@@ -37,6 +37,11 @@ int main(){
 
     estadoActual(ar);
 
+    // Pruebo el a_eliminar
+    a_eliminar(ar, h_medio, &fEliminar);
+
+    estadoActual(ar);
+
     printf("\n---DESTRUIR---\n\n");
     a_destruir(&ar, &fEliminar);
     estadoActual(ar);

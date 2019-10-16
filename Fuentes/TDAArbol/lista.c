@@ -41,8 +41,9 @@ extern void l_eliminar(tLista l, tPosicion p, void (*fEliminar)(tElemento)){//El
         exit(LST_POSICION_INVALIDA);
     aux=p->siguiente;//Asigna aux a al nodo siguiente al de la pos pasada
     p->siguiente=aux->siguiente;//P ahora apunta al siguiente de aux es decir se saltea aux
-    (*fEliminar)(p->elemento);
-    free(aux);//Livero el espacio de aux(lo elimino)
+    fEliminar(p->elemento);
+    //aux->siguiente = NULL;
+    free(aux);//Libero el espacio de aux(lo elimino)
 }
 
 /**
