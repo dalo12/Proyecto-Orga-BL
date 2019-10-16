@@ -10,6 +10,7 @@ recorrido en preorden.
 **/
 static void aux_destruir(tNodo n, void(*fEliminar)(tElemento)){
     tLista l = n->hijos;
+
     if(l != NULL){
         tPosicion p = l_primera(l);
         tNodo h;
@@ -23,7 +24,7 @@ static void aux_destruir(tNodo n, void(*fEliminar)(tElemento)){
 
         n->hijos = NULL;
         n->padre = NULL;
-        (fEliminar)(n->elemento);
+        fEliminar(n->elemento);
         free(n);
     }
 }
@@ -157,6 +158,29 @@ extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
 **/
 
 extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
+    tPosicion pos_hijo = l_primera(n->hijos);
+
+    if(n == a->raiz){
+        //Cuento los hijos que tiene la raíz
+        int cant_hijos = 0;
+        while(pos_hijo != l_fin(n->hijos) && cant_hijos < 2){
+            cant_hijos++;
+            pos_hijo = l_siguiente(n->hijos, pos_hijo);
+        }
+
+        //Si la raíz tiene más de un hijo, caigo en error
+        if(cant_hijos > 1){
+            exit(ARB_OPERACION_INVALIDA);
+        }else{
+            //Sino, la reemplazo por su hijo
+
+            tPosicion pos_hijo_unico = l_primera(a->raiz->hijos);
+            //pos_hijo_unico = l_siguiente(a->raiz->hijos, pos_hijo_unico);
+            a->raiz = pos_hijo_unico->elemento; //el elemento de pos_hijo_unico o el del siguiente a este?
+        }
+    }
+
+/*
     tLista listaHijo;
     tPosicion posLista;
     tPosicion posListaPadre;
@@ -188,7 +212,7 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
         tNodo padre=n->padre;
         posListaPadre=l_primera(listaPadre);
         posLista=l_primera(listaHijo);
-        posAnterior pos;
+        tPosicion pos;
         int cont=0;
         while(posListaPadre!=NULL && cont!=1){
             if(l_recuperar(listaPadre,posListaPadre)==padre){
@@ -214,7 +238,7 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
     }
 
 
-
+*/
 }
 
 /**
