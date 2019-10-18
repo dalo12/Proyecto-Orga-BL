@@ -44,8 +44,10 @@ Función creada para eliminar un nodo, pero sin eliminar a sus hijos (aunque sí
 **/
 static void eliminarNodo(tElemento e){
     tNodo n = (tNodo) e;
-    l_destruir(&(n->hijos), &noElimino); //mato al nodo, pero no a sus hijos
-    (n->padre) = NULL;
+    tLista hijos = n->hijos;
+    l_destruir(&hijos, &noElimino); //mato al nodo, pero no a sus hijos
+    n->padre = NULL;
+    n = NULL;
 }
 
 /**
@@ -219,25 +221,23 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
         }
 
         //agrego los hijos de n a la lista de hijos del padre de n
+        tLista lista_hijos_n = n->hijos;
+        tPosicion pos_hijo_n = l_primera(lista_hijos_n);
+        tNodo hijo_n;
         if(pos_n != NULL){ //estará de más esta verificación? Por las dudas ...
-            tLista lista_hijos_n = n->hijos;
-            tPosicion pos_hijo_n = l_primera(lista_hijos_n);
-            tNodo hijo_n;
 
             while(pos_hijo_n != l_fin(lista_hijos_n)){
                 hijo_n = l_recuperar(lista_hijos_n, pos_hijo_n);
-                printf("%d es hijo de %d\n", hijo_n->elemento, n->elemento);
                 hijo_n->padre = padre_n;
                 l_insertar(lista_hermanos_n, pos_n, hijo_n);
-                printf("Ahora %d es hijo de %d\n", hijo_n->elemento, hijo_n->padre->elemento);
+                pos_n = l_siguiente(lista_hermanos_n, pos_n); //el l_insertar hace que la pos_n cambie (se atrase 1)
                 pos_hijo_n = l_siguiente(lista_hijos_n, pos_hijo_n);
             }
         }
         //elimino a n de la lista de hijos del padre
         fEliminar(n->elemento);
         l_eliminar(lista_hermanos_n, pos_n, &eliminarNodo);
-        tPosicion pos = l_recuperar(n->hijos, l_primera(n->hijos));
-        printf("¿n dejó de existir? %d %d %d\n", n->elemento, n->padre->elemento, pos->elemento);
+        l_destruir(&lista_hijos_n, &noElimino);
     }
 
 /*

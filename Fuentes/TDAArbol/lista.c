@@ -41,7 +41,8 @@ extern void l_eliminar(tLista l, tPosicion p, void (*fEliminar)(tElemento)){//El
         exit(LST_POSICION_INVALIDA);
     aux=p->siguiente;//Asigna aux a al nodo siguiente al de la pos pasada
     p->siguiente=aux->siguiente;//P ahora apunta al siguiente de aux es decir se saltea aux
-    fEliminar(p->elemento);
+    fEliminar(aux->elemento);
+    aux->siguiente = NULL;
     //aux->siguiente = NULL;
     free(aux);//Libero el espacio de aux(lo elimino)
 }
@@ -57,7 +58,8 @@ extern void l_destruir(tLista * l, void (*fEliminar)(tElemento)){
         aEliminar=aux;
         aux=aux->siguiente;
         (*l)->siguiente=aux;
-        (*fEliminar)(aEliminar->elemento);//Elimino el elemento dentro de la celda
+        fEliminar(aEliminar->elemento);//Elimino el elemento dentro de la celda
+        aEliminar->siguiente = NULL;
         free(aEliminar);//Elimino la celda
     }
 }

@@ -37,11 +37,30 @@ int main(){
 
     estadoActual(ar);
 
-    // Pruebo el a_eliminar
+// ---- INICIO PRUEBA DE a_eliminar()
     a_eliminar(ar, h_medio, &fEliminar);
-
+    printf("\n\nElimino el nodo %d\n", h_medio->elemento);
     estadoActual(ar);
+    /*
+    //debería saltar error. Lo hace
+    a_eliminar(ar, ar->raiz, &fEliminar);
+    estadoActual(ar);
+    */
+    /*
+    //creo un arbol con una raiz con dos hijos.
+    //debería saltar error. Lo hace
+    tArbol ar2;
+    crear_arbol(&ar2);
+    crear_raiz(ar2, 234);
+    tNodo ar2_h1 = a_insertar(ar2, ar2->raiz, NULL, 345);
+    a_insertar(ar2, ar2->raiz, NULL, 456);
 
+    estadoActual(ar2);
+    a_eliminar(ar2, ar2->raiz, &fEliminar);
+    estadoActual(ar2);
+    */
+
+// ---- FIN PRUEBA DE a_eliminar()
     printf("\n---DESTRUIR---\n\n");
     a_destruir(&ar, &fEliminar);
     estadoActual(ar);
@@ -64,8 +83,11 @@ void preorden(tNodo n, int nivel){
         for(int i=0; i<nivel; i++){
             printf("   ");
         }
-        printf("L %d\n", n->elemento);
-
+        if(n->padre != NULL){
+            printf("L %d (%d)\n", n->elemento, n->padre->elemento);
+        }else{
+            printf("L %d (NULL)\n", n->elemento);
+        }
         while(p != l_fin(hijos_n)){//l_fin(hijos_n)){
             preorden(p->elemento, nivel+1);
             p = l_siguiente(hijos_n, p);
