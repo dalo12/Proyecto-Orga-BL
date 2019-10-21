@@ -53,42 +53,42 @@ static void eliminarNodo(tElemento e){
 /**
 Busca y elimina un nodo hijo de la lista de hijos de su nodo padre
 @param a Árbol a recorrer (es necesario?)
-@param h Nodo actual en el que estoy parado
-@param n Nodo buscado
+@param actual Nodo actual en el que estoy parado
+@param buscado Nodo buscado
 **/
-static void buscar_y_borrar_hijo(tArbol a, tNodo h, tNodo n){
-    tLista l = h->hijos;
-    tPosicion p = l_primera(l);
-    tNodo s;
+static void buscar_y_borrar_hijo(tArbol a, tNodo actual, tNodo buscado){
+    tLista lista_hijos_actual = actual->hijos;
+    tPosicion pos_hijo_actual = l_primera(lista_hijos_actual);
+    tNodo hijo_actual;
     int encontrado = 0;
 
     //Me fijo si el nodo n buscado es el nodo h pasado por parámetro
-    if(n == h){
+    if(buscado == actual){
         // dos nodos son lo mismo si tienen el mismo elemento, el mismo padre y los mismos hijos
         encontrado = 1;
     }
 
     //Me fijo si el nodo n buscado está en la lista de hijos del nodo h pasado por parámetro y de ser así, lo elimino
     if(!encontrado){
-        while(!encontrado && p != l_fin(l)){
-            s = l_recuperar(l, p);
-            if(s == n){
+        while(!encontrado && pos_hijo_actual != l_fin(lista_hijos_actual)){
+            hijo_actual = l_recuperar(lista_hijos_actual, pos_hijo_actual);
+            if(hijo_actual == buscado){
                 encontrado = 1;
-                l_eliminar(l, p, noElimino);
+                l_eliminar(lista_hijos_actual, pos_hijo_actual, &noElimino);
             }
-            p = l_siguiente(l, p);
+            pos_hijo_actual = l_siguiente(lista_hijos_actual, pos_hijo_actual);
         }
     }
 
     //Me fijo si el nodo n buscado está en algún descendiente del nodo h
     if(!encontrado){
-        l = h->hijos;
-        p = l_primera(l);
+        lista_hijos_actual = actual->hijos;
+        pos_hijo_actual = l_primera(lista_hijos_actual);
 
-        while(l_fin(l)){
-            s = l_recuperar(l, p);
-            buscar_y_borrar_hijo(a, s, n);
-            p = l_siguiente(l, p);
+        while(pos_hijo_actual != l_fin(lista_hijos_actual)){
+            hijo_actual = l_recuperar(lista_hijos_actual, pos_hijo_actual);
+            buscar_y_borrar_hijo(a, hijo_actual, buscado);
+            pos_hijo_actual = l_siguiente(lista_hijos_actual, pos_hijo_actual);
         }
     }
 }
@@ -239,66 +239,6 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
         l_eliminar(lista_hermanos_n, pos_n, &eliminarNodo);
         l_destruir(&lista_hijos_n, &noElimino);
     }
-
-/*
-    tLista listaHijo;
-    tPosicion posLista;
-    tPosicion posListaPadre;
-    tLista listaPadre;
-    int cont=0;
-    if(a->raiz==n){//Si raiz es n
-        listaHijo=n->hijos;
-        posLista=l_primera(listaHijo);
-        while(posLista!=NULL && cont<2){
-            if(l_siguiente(listaHijo,posLista)!=NULL){
-                cont++;
-                posLista=l_siguiente(listaHijo,posLista);
-            }
-        }
-        if(cont>=2){
-            exit(ARB_OPERACION_INVALIDA);
-        }
-        else
-            if(cont==1){
-                free(a->raiz->elemento);
-                a->raiz->hijos=NULL;
-                n->padre=NULL;
-                a->raiz=n;
-            }
-    }
-    else{//Preguntar
-        listaHijo=n->hijos;
-        listaPadre=n->padre->hijos;
-        tNodo padre=n->padre;
-        posListaPadre=l_primera(listaPadre);
-        posLista=l_primera(listaHijo);
-        tPosicion pos;
-        int cont=0;
-        while(posListaPadre!=NULL && cont!=1){
-            if(l_recuperar(listaPadre,posListaPadre)==padre){
-                cont=1;
-            }
-            else{
-                pos=posListaPadre;
-                posListaPadre=l_siguiente(listaPadre,posListaPadre);
-
-            }
-        }
-        while(posLista!=NULL){
-            tNodo aInsertar=l_recuperar(listaHijo,posLista);
-            l_insertar(listaPadre,posListaPadre,aInsertar);
-            posLista=l_siguiente(listaHijo,posLista);
-            posListaPadre=l_siguiente(listaPadre,posListaPadre);
-
-        }
-
-
-    //Falta completar
-
-    }
-
-
-*/
 }
 
 /**
@@ -342,13 +282,11 @@ extern tLista a_hijos(tArbol a, tNodo n){
  El subarbol de A a partir de N debe ser eliminado de A.
 **/
 extern void a_sub_arbol(tArbol a, tNodo n, tArbol * sa){
-    /*tNodo aux = (tNodo)malloc(sizeof(struct nodo));
-    aux->elemento = n->elemento;
-    aux->hijos = n->hijos;
-    aux->padre = n->padre;*/
+    *sa = (tArbol) malloc(sizeof(struct arbol));
     (*sa)->raiz = n;
     n->padre = NULL;
-    tNodo h = a->raiz;
+
+    tNodo h = a->raiz; //porque empiezo a buscar el padre de n buscando desde la raíz
 
     buscar_y_borrar_hijo(a, h, n);
 }

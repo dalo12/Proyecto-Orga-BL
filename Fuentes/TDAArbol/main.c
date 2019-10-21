@@ -37,8 +37,8 @@ int main(){
 
     estadoActual(ar);
 
-// ---- INICIO PRUEBA DE a_eliminar()
-    a_eliminar(ar, h_medio, &fEliminar);
+// ---- a_eliminar() INICIO PRUEBA
+    /*a_eliminar(ar, h_medio, &fEliminar);
     printf("\n\nElimino el nodo %d\n", h_medio->elemento);
     estadoActual(ar);
     /*
@@ -60,10 +60,23 @@ int main(){
     estadoActual(ar2);
     */
 
-// ---- FIN PRUEBA DE a_eliminar()
+// ---- a_eliminar() FIN PRUEBA
+
+// ---- a_sub_arbol() INICIO PRUEBA
+    printf("\n---SUBARBOL---\n");
+    tArbol na;
+    a_sub_arbol(ar, ar->raiz, &na);
+    estadoActual(ar);
+    printf("\n");
+    estadoActual(na);
+// ---- a_sub_arbol() FIN PRUEBA
+
+// ---- a_sub_arbol() INICIO PRUEBA
     printf("\n---DESTRUIR---\n\n");
     a_destruir(&ar, &fEliminar);
     estadoActual(ar);
+// ---- a_destruir() FIN PRUEBA
+
     return 0;
 }
 
@@ -88,6 +101,7 @@ void preorden(tNodo n, int nivel){
         }else{
             printf("L %d (NULL)\n", n->elemento);
         }
+        //printf("L %d\n", n->elemento);
         while(p != l_fin(hijos_n)){//l_fin(hijos_n)){
             preorden(p->elemento, nivel+1);
             p = l_siguiente(hijos_n, p);
