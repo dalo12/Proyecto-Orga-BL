@@ -62,9 +62,8 @@ static void buscar_y_borrar_hijo(tArbol a, tNodo actual, tNodo buscado){
     tNodo hijo_actual;
     int encontrado = 0;
 
-    //Me fijo si el nodo n buscado es el nodo h pasado por parámetro
+    //Me fijo si el nodo buscado es el nodo actual pasado por parámetro
     if(buscado == actual){
-        // dos nodos son lo mismo si tienen el mismo elemento, el mismo padre y los mismos hijos
         encontrado = 1;
     }
 
@@ -108,7 +107,7 @@ Crea la raíz de A.
 Si A no es vacío, finaliza indicando ARB_OPERACION_INVALIDA.
 **/
 
-extern void crear_raiz(tArbol a, tElemento e){//TENGO QUE CREAR ESPACIO PARA EL NODO O ESO PASA CUANDO HAGO EL MALLOC DE tArbol?
+extern void crear_raiz(tArbol a, tElemento e){
     tLista l;
     tNodo root = (tNodo) malloc(sizeof(struct nodo)); //crea el nodo
 
@@ -136,27 +135,31 @@ extern void crear_raiz(tArbol a, tElemento e){//TENGO QUE CREAR ESPACIO PARA EL 
 **/
 
 extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
-    tLista listaHijos=np->hijos;
-    tLista aux=l_primera(listaHijos);
-    tLista insert;//Pos anterior
-    tNodo aInsertar=(tNodo)malloc(sizeof(struct nodo));
-    aInsertar->padre=np;
+    tLista lista_hijos_padre = np->hijos;
+    tPosicion pos_nh = l_primera(lista_hijos_padre);
+    //tPosicion pos_anterior;//Pos anterior
+    tNodo aInsertar = (tNodo)malloc(sizeof(struct nodo));
+
+    aInsertar->padre = np;
     aInsertar->elemento=e;
     tLista hijos_de_a_insertar;
     crear_lista(&hijos_de_a_insertar);
     aInsertar->hijos = hijos_de_a_insertar;
 
-    if(nh==NULL)//Si el hermano es nulo inserto al final
-        l_insertar(listaHijos,l_fin(listaHijos),aInsertar);
-    else{//Si no es nulo recorro la lista de hijos hasta encontrar
-        while(aux!=NULL && nh!=aux->elemento){
-            insert=aux;//A pos anterior le asigno aux
-            aux=l_siguiente(listaHijos,aux);
+    if(nh == NULL){//Si el hermano es nulo inserto al final
+        l_insertar(lista_hijos_padre,l_fin(lista_hijos_padre), aInsertar);
+    }else{//Si no es nulo recorro la lista de hijos hasta encontrar
+        tNodo posible_nh = l_recuperar(lista_hijos_padre, pos_nh);
+        while(pos_nh != l_fin(lista_hijos_padre) && nh != posible_nh){
+            //pos_anterior = pos_hijo_padre;//A pos anterior le asigno la posición anterior de hijo padre
+            posible_nh = l_recuperar(lista_hijos_padre, pos_nh);
+            pos_nh = l_siguiente(lista_hijos_padre,pos_nh);
         }
-         if(nh==aux->elemento)//Si encuentro al hermano inserto en la lista
-            l_insertar(listaHijos,insert,aInsertar);
-        else
+        if(nh == posible_nh){//Si encuentro al hermano inserto en la lista
+            l_insertar(lista_hijos_padre, pos_nh, aInsertar);
+        }else{
             exit(ARB_POSICION_INVALIDA);//Si no error
+        }
     }
     return aInsertar;
 }
@@ -286,8 +289,11 @@ extern void a_sub_arbol(tArbol a, tNodo n, tArbol * sa){
     (*sa)->raiz = n;
     n->padre = NULL;
 
-    tNodo h = a->raiz; //porque empiezo a buscar el padre de n buscando desde la raíz
-
-    buscar_y_borrar_hijo(a, h, n);
+    if(n == a->raiz){
+        a->raiz = NULL;
+    }else{
+        tNodo h = a->raiz; //porque empiezo a buscar el padre de n buscando desde la raíz
+        buscar_y_borrar_hijo(a, h, n);
+    }
 }
 
