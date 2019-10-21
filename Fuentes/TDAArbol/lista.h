@@ -17,67 +17,68 @@ typedef struct celda * tPosicion;
 typedef void * tElemento;
 
 /**
- Inicializa una lista vac铆a.
+ Inicializa una lista vac韆.
  Una referencia a la lista creada es referenciada en *L.
 **/
 extern void crear_lista(tLista * l);
 
 /**
- Inserta el elemento E, en la posici贸n P, en L.
- Con L = A,B,C,D y la posici贸n P direccionando C, luego:
+ Inserta el elemento E, en la posici髇 P, en L.
+ Con L = A,B,C,D y la posici髇 P direccionando C, luego:
  L' = A,B,E,C,D
 **/
 extern void l_insertar(tLista l, tPosicion p, tElemento e);
 
 /**
- Elimina el nodo que se encuentra en la posici贸n P de L.
- El elemento almacenado en la posici贸n P es eliminado mediante la funci贸n fEliminar parametrizada.
+ Elimina la celda P de L. El elemento almacenado en la posici髇 P es eliminado mediante la funci髇 fEliminar parametrizada.
  Si P es fin(L), finaliza indicando LST_POSICION_INVALIDA.
 **/
 extern void l_eliminar(tLista l, tPosicion p, void (*fEliminar)(tElemento));
 
 /**
- Destruye la lista L, elimininando cada una de sus posiciones. Los elementos almacenados en las posiciones son eliminados mediante la funci贸n fEliminar parametrizada.
+ Destruye la lista L, elimininando cada una de sus celdas. Los elementos almacenados en las celdas son eliminados mediante la funci髇 fEliminar parametrizada.
 **/
 extern void l_destruir(tLista * l, void (*fEliminar)(tElemento));
 
  /**
- Recupera y retorna el elemento en la posici贸n P.
+ Recupera y retorna el elemento en la posici髇 P.
  Si P es fin(L), finaliza indicando LST_POSICION_INVALIDA.
 **/
 extern tElemento l_recuperar(tLista l, tPosicion p);
 
 /**
- Recupera y retorna la primera posici贸n de L.
- Si L es vac铆a, primera(L) = ultima(L) = fin(L).
+ Recupera y retorna la primera posici髇 de L.
+ Si L es vac韆, primera(L) = ultima(L) = fin(L).
 **/
 extern tPosicion l_primera(tLista l);
 
 /**
- Recupera y retorna la posici贸n siguiente a P en L.
+ Recupera y retorna la posici髇 siguiente a P en L.
  Si P es fin(L), finaliza indicando LST_NO_EXISTE_SIGUIENTE.
 **/
 extern tPosicion l_siguiente(tLista l, tPosicion p);
 
 /**
- Recupera y retorna la posici贸n anterior a P en L.
+ Recupera y retorna la posici髇 anterior a P en L.
  Si P es primera(L), finaliza indicando LST_NO_EXISTE_ANTERIOR.
 **/
 extern tPosicion l_anterior(tLista l, tPosicion p);
 
  /**
- Recupera y retorna la 煤ltima posici贸n de L.
- Si L es vac铆a, primera(L) = ultima(L) = fin(L).
+ Recupera y retorna la 鷏tima posici髇 de L.
+ Si L es vac韆, primera(L) = ultima(L) = fin(L).
 **/
 extern tPosicion l_ultima(tLista l);
 
  /**
- Recupera y retorna la posici贸n fin de L.
- Si L es vac铆a, primera(L) = ultima(L) = fin(L).
+ Recupera y retorna la posici髇 fin de L.
+ Si L es vac韆, primera(L) = ultima(L) = fin(L).
 **/
 extern tPosicion l_fin(tLista l);
 
-
-
+/**
+ Retorna la longitud actual de la lista.
+**/
+extern int l_longitud(tLista l);
 
 #endif // LISTA_H_INCLUDED
