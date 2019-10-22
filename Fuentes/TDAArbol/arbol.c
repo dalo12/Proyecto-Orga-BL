@@ -99,6 +99,9 @@ Una referencia al árbol creado es referenciado en *A.
 
 extern void crear_arbol(tArbol * a){
     *a = (tArbol) malloc(sizeof(struct arbol));//Asigno memoria a la estructura arbol
+    if(*a == NULL){
+        exit(ARB_ERROR_MEMORIA);
+    }
     (*a)->raiz = NULL;//Raiz es nulo
 }
 
