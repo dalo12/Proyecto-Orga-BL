@@ -137,6 +137,7 @@ extern void nueva_partida(tPartida * p, int modo_partida, int comienza, char * j
                     (*p)->nombre_jugador_2[i] = j2_nombre[i];
                     eol2 = (j2_nombre[i] == '\0');
                 }
+                i++;
             }
             /*(*p)->nombre_jugador_1= *j1_nombre;
             (*p)->nombre_jugador_2= *j2_nombre;*/
@@ -146,7 +147,6 @@ extern void nueva_partida(tPartida * p, int modo_partida, int comienza, char * j
     }else{
         exit(PART_ERROR_MEMORIA);
     }
-
 }
 
 /**
@@ -171,34 +171,35 @@ extern int nuevo_movimiento(tPartida p, int mov_x, int mov_y){
         }
     }
 
-    //Actualiza el turno de la partida
-    if(p->turno_de == PART_JUGADOR_1){
-        p->turno_de = PART_JUGADOR_2;
-    }else{
-        p->turno_de = PART_JUGADOR_1;
+    if(a_retornar == PART_MOVIMIENTO_OK){
+        //Actualiza el turno de la partida
+        if(p->turno_de == PART_JUGADOR_1){
+            p->turno_de = PART_JUGADOR_2;
+        }else{
+            p->turno_de = PART_JUGADOR_1;
+        }
+
+        //Actualiza el estado de la partida
+        estado_filas = comprobarFilas(p->tablero);
+        estado_columnas = comprobarColumnas(p->tablero);
+        estado_diagonales = comprobarDiagonales(p->tablero);
+
+        if(estado_filas == PART_JUGADOR_1){
+            p->estado = PART_GANA_JUGADOR_1;
+        }else if(estado_filas == PART_JUGADOR_2){
+            p->estado = PART_GANA_JUGADOR_2;
+        }else if(estado_columnas == PART_JUGADOR_1){
+            p->estado = PART_GANA_JUGADOR_1;
+        }else if(estado_columnas == PART_JUGADOR_2){
+            p->estado = PART_GANA_JUGADOR_2;
+        }else if(estado_diagonales == PART_JUGADOR_1){
+            p->estado = PART_GANA_JUGADOR_1;
+        }else if(estado_diagonales == PART_JUGADOR_2){
+            p->estado = PART_GANA_JUGADOR_2;
+        }else if(contarVacios(p->tablero) == 0){
+            p->estado = PART_EMPATE;
+        }
     }
-
-    //Actualiza el estado de la partida
-    estado_filas = comprobarFilas(p->tablero);
-    estado_columnas = comprobarColumnas(p->tablero);
-    estado_diagonales = comprobarDiagonales(p->tablero);
-
-    if(estado_filas == PART_JUGADOR_1){
-        p->estado = PART_GANA_JUGADOR_1;
-    }else if(estado_filas == PART_JUGADOR_2){
-        p->estado = PART_GANA_JUGADOR_2;
-    }else if(estado_columnas == PART_JUGADOR_1){
-        p->estado = PART_GANA_JUGADOR_1;
-    }else if(estado_columnas == PART_JUGADOR_2){
-        p->estado = PART_GANA_JUGADOR_2;
-    }else if(estado_diagonales == PART_JUGADOR_1){
-        p->estado = PART_GANA_JUGADOR_1;
-    }else if(estado_diagonales == PART_JUGADOR_2){
-        p->estado = PART_GANA_JUGADOR_2;
-    }else if(contarVacios(p->tablero) == 0){
-        p->estado = PART_EMPATE;
-    }
-
     return a_retornar;
 }
 
