@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1572446314 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Partida/partida.c
+	"partida.h"
+	<time.h>
+	<stdlib.h>
+
+1571404724 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Partida/partida.h
+
+1571787371 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/arbol.c
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1571404702 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/arbol.h
+	"lista.h"
+
+1571404719 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDAArbol/lista.h
+
+1571961185 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/IA/main.c
+	<stdio.h>
+	<stdlib.h>
+
+1568331770 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDALista-2/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1571404719 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/TDALista-2/lista.h
+
+1571787371 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/IA/arbol.c
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1571404702 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/IA/arbol.h
+	"lista.h"
+
+1571404719 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/IA/lista.h
+
+1571787419 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/IA/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1572446314 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/IA/partida.c
+	"partida.h"
+	<time.h>
+	<stdlib.h>
+
+1571404724 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/IA/partida.h
+
