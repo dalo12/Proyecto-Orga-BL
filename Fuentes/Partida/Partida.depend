@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1572209126 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Partida/main.c
+	<stdio.h>
+	<stdlib.h>
+	"partida.h"
+
+1572206559 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Partida/partida.c
+	"partida.h"
+	<time.h>
+	<stdlib.h>
+
+1571404724 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Partida/partida.h
+

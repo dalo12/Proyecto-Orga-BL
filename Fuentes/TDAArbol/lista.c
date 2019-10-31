@@ -9,6 +9,9 @@
 **/
 extern void crear_lista(tLista *l){//Crea la lista vacia con un celda dammi vacio al inicio;
     *l=(tLista)malloc(sizeof(struct celda));
+    if(*l == NULL){
+        exit(LST_ERROR_MEMORIA);
+    }
     (*l)->siguiente = NULL;//Setea el apuntador al celda siguiente en nulo
     (*l)->elemento = NULL;//Setea el elemento en nulo
 }

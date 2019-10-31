@@ -99,6 +99,9 @@ Una referencia al árbol creado es referenciado en *A.
 
 extern void crear_arbol(tArbol * a){
     *a = (tArbol) malloc(sizeof(struct arbol));//Asigno memoria a la estructura arbol
+    if(*a == NULL){
+        exit(ARB_ERROR_MEMORIA);
+    }
     (*a)->raiz = NULL;//Raiz es nulo
 }
 
@@ -139,6 +142,7 @@ extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
     tPosicion pos_nh = l_primera(lista_hijos_padre);
     //tPosicion pos_anterior;//Pos anterior
     tNodo aInsertar = (tNodo)malloc(sizeof(struct nodo));
+    int encontrado = 0;
 
     aInsertar->padre = np;
     aInsertar->elemento=e;
@@ -149,13 +153,20 @@ extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
     if(nh == NULL){//Si el hermano es nulo inserto al final
         l_insertar(lista_hijos_padre,l_fin(lista_hijos_padre), aInsertar);
     }else{//Si no es nulo recorro la lista de hijos hasta encontrar
-        tNodo posible_nh = l_recuperar(lista_hijos_padre, pos_nh);
-        while(pos_nh != l_fin(lista_hijos_padre) && nh != posible_nh){
+        //tNodo posible_nh = l_recuperar(lista_hijos_padre, pos_nh);
+        while(pos_nh != l_fin(lista_hijos_padre) && !encontrado){
+            if(l_recuperar(lista_hijos_padre, pos_nh) == nh){
+                encontrado = 1;
+            }else{
+                pos_nh = l_siguiente(lista_hijos_padre, pos_nh);
+            }
+            /*
             //pos_anterior = pos_hijo_padre;//A pos anterior le asigno la posición anterior de hijo padre
             posible_nh = l_recuperar(lista_hijos_padre, pos_nh);
             pos_nh = l_siguiente(lista_hijos_padre,pos_nh);
+            */
         }
-        if(nh == posible_nh){//Si encuentro al hermano inserto en la lista
+        if(encontrado){//Si encuentro al hermano inserto en la lista
             l_insertar(lista_hijos_padre, pos_nh, aInsertar);
         }else{
             exit(ARB_POSICION_INVALIDA);//Si no error
