@@ -178,7 +178,7 @@ void proximo_movimiento(tBusquedaAdversaria b, int * x, int * y){
     int sucAExplorar=l_longitud(sucesores);
     tLista posListaSuc=primera(sucesores);
     int modo_sucesor=l_recup(sucesores,posListaSuc);
-    tLista estados_sucesor=a_recup(b->arbol_busqueda,modo_sucesor);
+    tEstado estados_sucesor=a_recup(b->arbol_busqueda,modo_sucesor);
     int estado_gana;
     int estado_pierde;
     int estado_empata;
@@ -187,15 +187,15 @@ void proximo_movimiento(tBusquedaAdversaria b, int * x, int * y){
     //Recorro la lista de hijos
     while(sucAExplorar>0 && estado_gana==NULL){
         sucAExplorar--;
-        if(estados_sucesor->utilidad=IA_GANA_MAX){
-            esta_gana=estados_sucesor;
+        if(estados_sucesor->utilidad==IA_GANA_MAX){
+            estado_gana=estados_sucesor;
         }
         else{
-            if(estados_sucesor->utilidad=IA_EMPATA_MAX){
-                estado_empate=estados_sucesor;
+            if(estados_sucesor->utilidad==IA_EMPATA_MAX){
+                estado_empata=estados_sucesor;
             }
             else{
-                if(estados_sucesor->utilidad=IA_PIERDE_MAX){
+                if(estados_sucesor->utilidad==IA_PIERDE_MAX){
                     estado_pierde=estados_sucesor;
                 }
             }
@@ -215,7 +215,7 @@ void proximo_movimiento(tBusquedaAdversaria b, int * x, int * y){
                 toReturn=estado_pierde;
                 }
             }
-            est
+            //est
         return toReturn;
 
     }
@@ -263,10 +263,10 @@ static void crear_sucesores_min_max(tArbol a, tNodo n, int es_max, int alpha, in
     int mejor_valor_sucesor;
     int valor_sucesor;
     tLista estado_sucesor=a_hijos(a,n);// tengo q usar estado_sucesor de ia
-    int sucAExplorar=l_longitud(sucesores);// se necesita ?
+    int sucAExplorar=l_longitud(estado_sucesor);// se necesita ?
 
    if(n->elemento!=IA_NO_TERMINO){
-        return valor_utilidad(n->elemento);//el elemento seria el valor de utilidad ==???
+        return valor_utilidad(n->elemento, jugador_max);//el elemento seria el valor de utilidad ==???
    }
    if(es_max){
     mejor_valor_sucesor=IA_INFINITO_NEG;//ES CORRECTO USAR INFINITO NEG?;

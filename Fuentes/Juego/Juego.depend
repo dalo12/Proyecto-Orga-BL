@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1571787371 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/arbol.c
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1571404702 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/arbol.h
+	"lista.h"
+
+1571404719 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/lista.h
+
+1571787419 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1572567125 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/main.c
+	<stdio.h>
+	<stdlib.h>
+	"partida.h"
+
+1571404724 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/partida.h
+
+1572446314 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/partida.c
+	"partida.h"
+	<time.h>
+	<stdlib.h>
+
