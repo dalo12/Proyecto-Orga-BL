@@ -2,6 +2,7 @@
 
 #include <time.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
 Comprueba si algún jugador ganó, comprobando las filas del tablero
@@ -104,8 +105,8 @@ extern void nueva_partida(tPartida * p, int modo_partida, int comienza, char * j
     srand(time(NULL)); // Initialization, should only be called once.
     int r = rand(); // Returns a pseudo-random integer between 0 and RAND_MAX.
 
-    *p=(tPartida)malloc(sizeof(struct partida));
-    if(*p != NULL){
+    (*p) =(tPartida)malloc(sizeof(struct partida));
+    if((*p) != NULL){
         (*p)->tablero = (tTablero) malloc(sizeof(struct tablero));
         if((*p)->tablero != NULL){
             for(int i=0; i<3; i++){
@@ -144,9 +145,11 @@ extern void nueva_partida(tPartida * p, int modo_partida, int comienza, char * j
             (*p)->nombre_jugador_2= (*j2_nombre);
             */
         }else{
+            // si tablero es nulo
             exit(PART_ERROR_MEMORIA);
         }
     }else{
+        // si p es nulo
         exit(PART_ERROR_MEMORIA);
     }
 }

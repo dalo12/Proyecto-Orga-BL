@@ -4,13 +4,12 @@
 #include "ia.h"
 
 void estadoActual(tPartida p);
-void userVsUser(tPartida part, int empieza, char *p1, char *p2);
-void userVsIA(tPartida part, int empieza, char *p1, char *p2);
-void IAvsIA(tPartida part, int empieza, char *p1, char *p2);
+void userVsUser(int empieza, char *p1, char *p2);
+void userVsIA(int empieza, char *p1, char *p2);
+void IAvsIA(int empieza, char *p1, char *p2);
 
 int main()
 {
-    tPartida part;
     char p1[50];
     char p2[50];
     int game_mode = 0;
@@ -28,11 +27,11 @@ int main()
     empieza = empieza + PART_JUGADOR_1;
 
     if(game_mode == PART_MODO_USUARIO_VS_USUARIO){
-        userVsUser(part, empieza, p1, p2);
+        userVsUser(empieza, p1, p2);
     }else if(game_mode == PART_MODO_USUARIO_VS_AGENTE_IA){
-        userVsIA(part, empieza, p1, p2);
+        userVsIA(empieza, p1, p2);
     }else{
-        IAvsIA(part, empieza, p1, p2);
+        IAvsIA(empieza, p1, p2);
     }
 
     return 0;
@@ -40,12 +39,12 @@ int main()
 
 /**
 Ejecuta una partida de jugador vs jugador
-@param part Partida que se va a ejecutar
 @param empieza El jugador que empieza la partida (PART_JUGADOR_1, PART_JUGADOR_2 ó PART_JUGADOR_RANDOM)
 @param p1 Nombre del primer jugador
 @param p2 Nombre del segundo jugador
 **/
-void userVsUser(tPartida part, int empieza, char *p1, char *p2){
+void userVsUser(int empieza, char *p1, char *p2){
+    tPartida part;
     int x = 0;
     int y = 0;
     int error_movimiento = PART_MOVIMIENTO_ERROR;
@@ -84,12 +83,12 @@ void userVsUser(tPartida part, int empieza, char *p1, char *p2){
 
 /**
 Ejecuta una partida de jugador vs IA
-@param part Partida que se va a ejecutar
 @param empieza El jugador que empieza la partida (PART_JUGADOR_1, PART_JUGADOR_2 ó PART_JUGADOR_RANDOM)
 @param p1 Nombre del primer jugador
 @param p2 Nombre de la IA
 **/
-void userVsIA(tPartida part, int empieza, char *p1, char *p2){
+void userVsIA(int empieza, char *p1, char *p2){
+    tPartida part;
     int x = 0;
     int y = 0;
     int x_ia = 0;
@@ -144,28 +143,31 @@ void userVsIA(tPartida part, int empieza, char *p1, char *p2){
 
 /**
 Ejecuta una partida de jugador vs IA
-@param part Partida que se va a ejecutar
 @param empieza El jugador que empieza la partida (PART_JUGADOR_1, PART_JUGADOR_2 ó PART_JUGADOR_RANDOM)
 @param p1 Nombre del primer jugador
 @param p2 Nombre de la IA
 **/
-void IAvsIA(tPartida part, int empieza, char *p1, char *p2){
+void IAvsIA(int empieza, char *p1, char *p2){
+    tPartida part;
     int x_ia1 = 0;
     int y_ia1 = 0;
     int x_ia2 = 0;
     int y_ia2 = 0;
-    int error_movimiento = PART_MOVIMIENTO_ERROR;
     tBusquedaAdversaria ba1;
     tBusquedaAdversaria ba2;
 
-    printf("\n------COMIENZA LA PARTIDA-------\IA VS. IA\n\n");
+    //TODO Borrar
+        int contador_de_ciclo = 0;
+    printf("\n------COMIENZA LA PARTIDA-------\nIA VS. IA\n\n");
     nueva_partida(&part, PART_MODO_AGENTE_IA_VS_AGENTE_IA, empieza, p1, p2);
-
-    while(part->estado == PART_EN_JUEGO){
+    crear_busqueda_adversaria(&ba1, part);
+    /*while(part->estado == PART_EN_JUEGO){
         estadoActual(part);
+        printf("%i\n", contador_de_ciclo);
 
+        crear_busqueda_adversaria(&ba1, part);
         if(part->turno_de == PART_JUGADOR_1){
-            printf("\nJuega IA 2");
+            printf("\nJuega IA 1");
 
             crear_busqueda_adversaria(&ba1, part); //genera la búsqueda del mejor movimiento
             proximo_movimiento(ba1, &x_ia1, &y_ia1); //encuentra el mejor movimiento
@@ -180,7 +182,7 @@ void IAvsIA(tPartida part, int empieza, char *p1, char *p2){
             destruir_busqueda_adversaria(&ba2); //destruye la búsqueda
         }
 
-    }
+    }*/
     printf("\n");
     estadoActual(part);
     printf("\n");

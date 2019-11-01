@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 
 #include "lista.h"
@@ -125,15 +126,15 @@ static void moverCercano(tEstado e, int valor, int *x, int *y){
     }
 }
 
-static void eliminarElemAB(void *o){
-    tEstado *e = (tEstado) o;
+static void eliminarElemAB(tElemento o){
+    tEstado e = (tEstado) o;
     for(int i=0; i<3; i++){
         for(int j=0; j<3; j++){
-            (*e)->grilla[i][j] = 0;
+            (e)->grilla[i][j] = 0;
         }
     }
 
-    (*e)->utilidad = 0;
+    (e)->utilidad = 0;
     free(e);
 }
 //------ Fin funciones auxiliares creadas por la comisión
@@ -279,10 +280,12 @@ Implementa la estrategia del algoritmo Min-Max con podas Alpha-Beta, a partir de
 
 **/
 static void crear_sucesores_min_max(tArbol a, tNodo n, int es_max, int alpha, int beta, int jugador_max, int jugador_min){
+
+/* //ALGORITMO DALO (no anda ni para atrás)
     int utilidad = 0;
     int hijo_es_max = 0;
-    int num_max = 0;
-    int num_min = 0;
+    //int num_max = 0;
+    //int num_min = 0;
     tArbol poda; //lo uso solamente para llamar a la función 'a_sub_arbol'
     tLista lista_hijos;
     tPosicion pos_nodo_hijo;
@@ -370,7 +373,9 @@ static void crear_sucesores_min_max(tArbol a, tNodo n, int es_max, int alpha, in
     }
 
     estado_actual->utilidad = utilidad;
-*/
+*/ //FIN ALGORITMO DALO
+
+
 /*    int mejor_valor_sucesor;
     int valor_sucesor;
     tLista estado_sucesor=a_hijos(a,n);// tengo q usar estado_sucesor de ia
