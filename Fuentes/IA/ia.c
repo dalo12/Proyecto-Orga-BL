@@ -11,6 +11,7 @@ static int valor_utilidad(tEstado e, int jugador_max);
 static tLista estados_sucesores(tEstado e, int ficha_jugador);
 static void diferencia_estados(tEstado anterior, tEstado nuevo, int * x, int * y);
 static tEstado clonar_estado(tEstado e);
+void fEliminar(tElemento e);
 
 //------ Inicio funciones auxiliares creadas por la comisión
 
@@ -226,9 +227,12 @@ void proximo_movimiento(tBusquedaAdversaria b, int * x, int * y){
 >>>>>  A IMPLEMENTAR   <<<<<
 **/
 void destruir_busqueda_adversaria(tBusquedaAdversaria * b){
-
-
-
+        tArbol a=b->arbol_busqueda;
+        a_destruir(&a, &fEliminar);
+        free(b);
+}
+void fEliminar(tElemento e){
+    int n = (int) e;
 }
 
 // ===============================================================================================================
