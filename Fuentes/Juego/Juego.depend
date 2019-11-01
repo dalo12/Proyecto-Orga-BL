@@ -14,10 +14,11 @@
 	<stdlib.h>
 	"lista.h"
 
-1572567125 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/main.c
+1572620541 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/main.c
 	<stdio.h>
 	<stdlib.h>
 	"partida.h"
+	"ia.h"
 
 1571404724 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/partida.h
 
@@ -25,4 +26,15 @@
 	"partida.h"
 	<time.h>
 	<stdlib.h>
+
+1572621372 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/ia.c
+	<stdlib.h>
+	<time.h>
+	"lista.h"
+	"arbol.h"
+	"ia.h"
+
+1571404713 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/ia.h
+	"arbol.h"
+	"partida.h"
 

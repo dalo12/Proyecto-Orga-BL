@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "partida.h"
+#include "ia.h"
 
 void estadoActual(tPartida p);
-void userVsUser(tPartida part, int game_mode, int empieza, char *p1, char *p2);
-void userVsIA(tPartida part, int game_mode, int empieza, char *p1, char *p2);
-void IAvsIA(tPartida part, int game_mode, int empieza, char *p1, char *p2);
+void userVsUser(tPartida part, int empieza, char *p1, char *p2);
+void userVsIA(tPartida part, int empieza, char *p1, char *p2);
+void IAvsIA(tPartida part, int empieza, char *p1, char *p2);
 
 int main()
 {
@@ -27,11 +28,11 @@ int main()
     empieza = empieza + PART_JUGADOR_1;
 
     if(game_mode == PART_MODO_USUARIO_VS_USUARIO){
-        userVsUser(part, game_mode, empieza, p1, p2);
+        userVsUser(part, empieza, p1, p2);
     }else if(game_mode == PART_MODO_USUARIO_VS_AGENTE_IA){
-        userVsIA(part, game_mode, empieza, p1, p2);
+        userVsIA(part, empieza, p1, p2);
     }else{
-        IAvsIA(part, game_mode, empieza, p1, p2);
+        IAvsIA(part, empieza, p1, p2);
     }
 
     return 0;
@@ -40,18 +41,17 @@ int main()
 /**
 Ejecuta una partida de jugador vs jugador
 @param part Partida que se va a ejecutar
-@param game_mode Modo de juego (PART_MODO_USUARIO_VS_USUARIO, PART_MODO_USUARIO_VS_AGENTE_IA ó PART_MODO_AGENTE_IA_VS_AGENTE_IA)
 @param empieza El jugador que empieza la partida (PART_JUGADOR_1, PART_JUGADOR_2 ó PART_JUGADOR_RANDOM)
 @param p1 Nombre del primer jugador
 @param p2 Nombre del segundo jugador
 **/
-void userVsUser(tPartida part, int game_mode, int empieza, char *p1, char *p2){
+void userVsUser(tPartida part, int empieza, char *p1, char *p2){
     int x = 0;
     int y = 0;
     int error_movimiento = PART_MOVIMIENTO_ERROR;
 
     printf("\n------COMIENZA LA PARTIDA-------\nJUGADOR VS. JUGADOR\n\n");
-    nueva_partida(&part, game_mode, empieza, p1, p2);
+    nueva_partida(&part, PART_MODO_USUARIO_VS_USUARIO, empieza, p1, p2);
 
     while(part->estado == PART_EN_JUEGO){
         estadoActual(part);
@@ -85,12 +85,11 @@ void userVsUser(tPartida part, int game_mode, int empieza, char *p1, char *p2){
 /**
 Ejecuta una partida de jugador vs IA
 @param part Partida que se va a ejecutar
-@param game_mode Modo de juego (PART_MODO_USUARIO_VS_USUARIO, PART_MODO_USUARIO_VS_AGENTE_IA ó PART_MODO_AGENTE_IA_VS_AGENTE_IA)
 @param empieza El jugador que empieza la partida (PART_JUGADOR_1, PART_JUGADOR_2 ó PART_JUGADOR_RANDOM)
 @param p1 Nombre del primer jugador
 @param p2 Nombre de la IA
 **/
-void userVsIA(tPartida part, int game_mode, int empieza, char *p1, char *p2){
+void userVsIA(tPartida part, int empieza, char *p1, char *p2){
     int x = 0;
     int y = 0;
     int x_ia = 0;
@@ -99,7 +98,7 @@ void userVsIA(tPartida part, int game_mode, int empieza, char *p1, char *p2){
     tBusquedaAdversaria ba;
 
     printf("\n------COMIENZA LA PARTIDA-------\nJUGADOR VS. IA\n\n");
-    nueva_partida(&part, game_mode, empieza, p1, p2);
+    nueva_partida(&part, PART_MODO_USUARIO_VS_AGENTE_IA, empieza, p1, p2);
 
     while(part->estado == PART_EN_JUEGO){
         estadoActual(part);
@@ -119,7 +118,7 @@ void userVsIA(tPartida part, int game_mode, int empieza, char *p1, char *p2){
                 if(error_movimiento == PART_MOVIMIENTO_ERROR){
                     printf("ERROR! Intente jugar de nuevo.\n");;
                 }
-            while(error_movimiento == PART_MOVIMIENTO_ERROR);
+            }while(error_movimiento == PART_MOVIMIENTO_ERROR);
         }else{
             printf("\nJuega IA");
 
@@ -146,12 +145,11 @@ void userVsIA(tPartida part, int game_mode, int empieza, char *p1, char *p2){
 /**
 Ejecuta una partida de jugador vs IA
 @param part Partida que se va a ejecutar
-@param game_mode Modo de juego (PART_MODO_USUARIO_VS_USUARIO, PART_MODO_USUARIO_VS_AGENTE_IA ó PART_MODO_AGENTE_IA_VS_AGENTE_IA)
 @param empieza El jugador que empieza la partida (PART_JUGADOR_1, PART_JUGADOR_2 ó PART_JUGADOR_RANDOM)
 @param p1 Nombre del primer jugador
 @param p2 Nombre de la IA
 **/
-void IAvsIA(tPartida part, int game_mode, int empieza, char *p1, char *p2){
+void IAvsIA(tPartida part, int empieza, char *p1, char *p2){
     int x_ia1 = 0;
     int y_ia1 = 0;
     int x_ia2 = 0;
@@ -161,7 +159,7 @@ void IAvsIA(tPartida part, int game_mode, int empieza, char *p1, char *p2){
     tBusquedaAdversaria ba2;
 
     printf("\n------COMIENZA LA PARTIDA-------\IA VS. IA\n\n");
-    nueva_partida(&part, game_mode, empieza, p1, p2);
+    nueva_partida(&part, PART_MODO_AGENTE_IA_VS_AGENTE_IA, empieza, p1, p2);
 
     while(part->estado == PART_EN_JUEGO){
         estadoActual(part);
@@ -204,8 +202,9 @@ void estadoActual(tPartida p){
     int elem = 0;
     char impr = ' ';
 
+    printf("     1   2   3\n");
     for(int i=0; i<3; i++){
-        printf("|");
+        printf("%i: |", (i+1));
         for(int j=0; j<3; j++){
             elem = p->tablero->grilla[i][j];
             if(elem == PART_SIN_MOVIMIENTO){
