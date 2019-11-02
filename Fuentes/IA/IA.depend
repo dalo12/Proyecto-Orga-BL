@@ -49,3 +49,40 @@
 
 1571404724 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/IA/partida.h
 
+1572486476 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/IA/arbol.c
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1572486476 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/IA/arbol.h
+	"lista.h"
+
+1572486476 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/IA/lista.h
+
+1572486476 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/IA/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1572486476 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/IA/partida.c
+	"partida.h"
+	<time.h>
+	<stdlib.h>
+
+1572486476 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/IA/partida.h
+
+1572240759 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/IA/main.c
+	<stdio.h>
+	<stdlib.h>
+
+1572658976 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/IA/ia.c
+	<stdlib.h>
+	<time.h>
+	"lista.h"
+	"arbol.h"
+	"ia.h"
+
+1571696299 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/IA/ia.h
+	"arbol.h"
+	"partida.h"
+

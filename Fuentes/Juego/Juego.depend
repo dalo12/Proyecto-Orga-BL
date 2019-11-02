@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1571787371 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/arbol.c
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1571404702 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/arbol.h
+	"lista.h"
+
+1571404719 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/lista.h
+
+1571787419 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1572623495 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/main.c
+	<stdio.h>
+	<stdlib.h>
+	"partida.h"
+	"ia.h"
+
+1571404724 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/partida.h
+
+1572623171 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/partida.c
+	"partida.h"
+	<time.h>
+	<stdlib.h>
+	<stdio.h>
+
+1572623455 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/ia.c
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	"lista.h"
+	"arbol.h"
+	"ia.h"
+
+1571404713 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/ia.h
+	"arbol.h"
+	"partida.h"
+
