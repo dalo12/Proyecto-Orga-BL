@@ -1,0 +1,65 @@
+
+/* YA NO LO USO, LO GUARDO PORQUE ESTE SEGURO ANDA Y EL QUE HICE ARRIBA CAPAZ QUE NO
+        //Ahora busco verdadero valor de utilidad de N, según corresponda
+        if(es_max){
+            pos_nodo_hijo = l_primera(lista_hijos);
+            while(pos_nodo_hijo != l_fin(lista_hijos)){
+                nodo_hijo = l_recuperar(lista_hijos, pos_nodo_hijo);
+                estado_hijo = a_recuperar(a, nodo_hijo);
+                if(num_max < estado_hijo->utilidad){
+                    num_max = estado_hijo->utilidad;
+                }
+                pos_nodo_hijo = l_siguiente(lista_hijos, pos_nodo_hijo);
+            }
+
+            utilidad = num_max; //me quedo con el mayor valor de utilidad de sus hijos min
+        }else{
+            pos_nodo_hijo = l_primera(lista_hijos);
+            while(pos_nodo_hijo != l_fin(lista_hijos)){
+                nodo_hijo = l_recuperar(lista_hijos, pos_nodo_hijo);
+                estado_hijo = a_recuperar(a, nodo_hijo);
+                if(num_min > estado_hijo->utilidad){
+                    num_min = estado_hijo->utilidad;
+                }
+                pos_nodo_hijo = l_siguiente(lista_hijos, pos_nodo_hijo);
+            }
+
+            utilidad = num_min; //me quedo con el menor valor de utilidad de sus hijos max
+        }
+    }
+
+    estado_actual->utilidad = utilidad;
+*/ //FIN ALGORITMO DALO
+
+
+/*    int mejor_valor_sucesor;
+    int valor_sucesor;
+    tLista estado_sucesor=a_hijos(a,n);// tengo q usar estado_sucesor de ia
+    int sucAExplorar=l_longitud(estado_sucesor);// se necesita ?
+
+   if(n->elemento!=IA_NO_TERMINO){
+        return valor_utilidad(n->elemento, jugador_max);//el elemento seria el valor de utilidad ==???
+   }
+   if(es_max){
+    mejor_valor_sucesor=IA_INFINITO_NEG;//ES CORRECTO USAR INFINITO NEG?;
+    while(sucAExplorar>0){// es correcto minmaz y max y lo demas xd
+        valor_sucesor= crear_sucesores_min_max(a, estado_sucesor, 0, alpha, beta, jugador_max, jugador_min);//es correcto el false o a que hace referencia
+        mejor_valor_sucesor=max(mejor_valor_sucesor,valor_sucesor);
+        alpha=max(alpha,mejor_valor_sucesor);
+        sucAExplorar++;
+        if(beta<=alpha){
+            return mejor_valor_sucesor;
+        }
+    }
+   }else{
+        mejor_valor_sucesor=IA_INFINITO_POS;//ES CORRECTO SERIA INFINITO + ??
+        while(sucAExplorar>0){
+            valor_sucesor=minmax(estado_sucesor,true,alpha,beta);
+            mejor_valor_sucesor=min(mejor_valor_sucesor,valor_sucesor);
+            alpha=min(alpha,mejor_valor_sucesor);
+            sucAExplorar++;
+            if(beta<=alpha){
+                return mejor_valor_sucesor;
+            }
+        }
+   }*/

@@ -280,18 +280,15 @@ Implementa la estrategia del algoritmo Min-Max con podas Alpha-Beta, a partir de
 
 **/
 static void crear_sucesores_min_max(tArbol a, tNodo n, int es_max, int alpha, int beta, int jugador_max, int jugador_min){
-
-/* //ALGORITMO DALO (no anda ni para atrás)
     int utilidad = 0;
     int hijo_es_max = 0;
-    //int num_max = 0;
-    //int num_min = 0;
-    tArbol poda; //lo uso solamente para llamar a la función 'a_sub_arbol'
     tLista lista_hijos;
+    tArbol poda;
     tPosicion pos_nodo_hijo;
     tNodo nodo_hijo;
     tEstado estado_actual = a_recuperar(a, n);
     tEstado estado_hijo;
+
 
     if(alpha >= beta){
         //podo
@@ -308,9 +305,9 @@ static void crear_sucesores_min_max(tArbol a, tNodo n, int es_max, int alpha, in
         if(utilidad == IA_NO_TERMINO){ //Significa que la partida todavía no terminó, por lo que N tiene hijos
             //creo los sucesores de N
             if(es_max){
-                lista_hijos = estados_sucesores(estado_actual, jugador_min); // se supone que los hijos de max deberían ser min
+                lista_hijos = estados_sucesores(estado_actual, jugador_max); // se supone que los hijos de max deberían ser min
             }else{
-                lista_hijos = estados_sucesores(estado_actual, jugador_max); // se supone que los hijos de min deberían ser max
+                lista_hijos = estados_sucesores(estado_actual, jugador_min); // se supone que los hijos de min deberían ser max
             }
 
             utilidad = 0; //limpio el valor de la utilidad porque lo voy a usar después
@@ -340,73 +337,28 @@ static void crear_sucesores_min_max(tArbol a, tNodo n, int es_max, int alpha, in
                 pos_nodo_hijo = l_siguiente(lista_hijos, pos_nodo_hijo);
             }
         }
+        if(pos_nodo_hijo == l_fin(lista_hijos)){
+            estado_hijo = a_recuperar(a, nodo_hijo);
+                //Actualizo el valor de utilidad del nodo N segun corresponda
+                if(es_max){
+                    // Si N es max, la utilidad de N es la mayor de sus hijos
+                    if(utilidad < estado_hijo->utilidad){
+                        utilidad = estado_hijo->utilidad;
+                    }
+                    // supongo que alpha representa el valor de utilidad del padre de N
+                    crear_sucesores_min_max(a, nodo_hijo, hijo_es_max, utilidad, alpha, jugador_max, jugador_min);
+                }else{
+                    // Si N es min, la utilidad de N es la menor de sus hijos
+                    if(utilidad > estado_hijo->utilidad){
+                        utilidad = estado_hijo->utilidad;
+                    }
+                    // supongo que alpha representa el valor de utilidad del padre de N
+                    crear_sucesores_min_max(a, nodo_hijo, hijo_es_max, alpha, utilidad, jugador_max, jugador_min);
+                }
+        }
     }
     estado_actual->utilidad = utilidad;
 
-/* YA NO LO USO, LO GUARDO PORQUE ESTE SEGURO ANDA Y EL QUE HICE ARRIBA CAPAZ QUE NO
-        //Ahora busco verdadero valor de utilidad de N, según corresponda
-        if(es_max){
-            pos_nodo_hijo = l_primera(lista_hijos);
-            while(pos_nodo_hijo != l_fin(lista_hijos)){
-                nodo_hijo = l_recuperar(lista_hijos, pos_nodo_hijo);
-                estado_hijo = a_recuperar(a, nodo_hijo);
-                if(num_max < estado_hijo->utilidad){
-                    num_max = estado_hijo->utilidad;
-                }
-                pos_nodo_hijo = l_siguiente(lista_hijos, pos_nodo_hijo);
-            }
-
-            utilidad = num_max; //me quedo con el mayor valor de utilidad de sus hijos min
-        }else{
-            pos_nodo_hijo = l_primera(lista_hijos);
-            while(pos_nodo_hijo != l_fin(lista_hijos)){
-                nodo_hijo = l_recuperar(lista_hijos, pos_nodo_hijo);
-                estado_hijo = a_recuperar(a, nodo_hijo);
-                if(num_min > estado_hijo->utilidad){
-                    num_min = estado_hijo->utilidad;
-                }
-                pos_nodo_hijo = l_siguiente(lista_hijos, pos_nodo_hijo);
-            }
-
-            utilidad = num_min; //me quedo con el menor valor de utilidad de sus hijos max
-        }
-    }
-
-    estado_actual->utilidad = utilidad;
-*/ //FIN ALGORITMO DALO
-
-
-/*    int mejor_valor_sucesor;
-    int valor_sucesor;
-    tLista estado_sucesor=a_hijos(a,n);// tengo q usar estado_sucesor de ia
-    int sucAExplorar=l_longitud(estado_sucesor);// se necesita ?
-
-   if(n->elemento!=IA_NO_TERMINO){
-        return valor_utilidad(n->elemento, jugador_max);//el elemento seria el valor de utilidad ==???
-   }
-   if(es_max){
-    mejor_valor_sucesor=IA_INFINITO_NEG;//ES CORRECTO USAR INFINITO NEG?;
-    while(sucAExplorar>0){// es correcto minmaz y max y lo demas xd
-        valor_sucesor= crear_sucesores_min_max(a, estado_sucesor, 0, alpha, beta, jugador_max, jugador_min);//es correcto el false o a que hace referencia
-        mejor_valor_sucesor=max(mejor_valor_sucesor,valor_sucesor);
-        alpha=max(alpha,mejor_valor_sucesor);
-        sucAExplorar++;
-        if(beta<=alpha){
-            return mejor_valor_sucesor;
-        }
-    }
-   }else{
-        mejor_valor_sucesor=IA_INFINITO_POS;//ES CORRECTO SERIA INFINITO + ??
-        while(sucAExplorar>0){
-            valor_sucesor=minmax(estado_sucesor,true,alpha,beta);
-            mejor_valor_sucesor=min(mejor_valor_sucesor,valor_sucesor);
-            alpha=min(alpha,mejor_valor_sucesor);
-            sucAExplorar++;
-            if(beta<=alpha){
-                return mejor_valor_sucesor;
-            }
-        }
-   }*/
 }
 
 /**
