@@ -14,6 +14,8 @@ static void diferencia_estados(tEstado anterior, tEstado nuevo, int * x, int * y
 static tEstado clonar_estado(tEstado e);
 void fEliminar(tElemento e);
 
+
+
 //------ Inicio funciones auxiliares creadas por la comisión
 
 /**
