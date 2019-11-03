@@ -50,12 +50,12 @@
 
 1572652671 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/lista.h
 
-1572736262 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/ia.c
+1572755275 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/ia.c
 	<stdlib.h>
 	<stdio.h>
-	<time.h>
 	"lista.h"
 	"arbol.h"
+	<time.h>
 	"ia.h"
 
 1572652671 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/ia.h
@@ -69,7 +69,7 @@
 	<stdlib.h>
 	"lista.h"
 
-1572736215 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/main.c
+1572741794 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/main.c
 	<stdio.h>
 	<stdlib.h>
 	"partida.h"

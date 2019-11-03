@@ -122,9 +122,9 @@ void userVsIA(int empieza, char *p1, char *p2){
             printf("\nJuega IA");
 
             crear_busqueda_adversaria(&ba, part); //genera la búsqueda del mejor movimiento
-            //proximo_movimiento(ba, &x_ia, &y_ia); //encuentra el mejor movimiento
-           //nuevo_movimiento(part, x_ia, y_ia); //mueve hacia el mejor movimiento
-            //destruir_busqueda_adversaria(&ba); //destruye la búsqueda
+           proximo_movimiento(ba, &x_ia, &y_ia); //encuentra el mejor movimiento
+           nuevo_movimiento(part, x_ia, y_ia); //mueve hacia el mejor movimiento
+            destruir_busqueda_adversaria(&ba); //destruye la búsqueda
         }
 
     }
@@ -161,7 +161,7 @@ void IAvsIA(int empieza, char *p1, char *p2){
     printf("\n------COMIENZA LA PARTIDA-------\nIA VS. IA\n\n");
     nueva_partida(&part, PART_MODO_AGENTE_IA_VS_AGENTE_IA, empieza, p1, p2);
     crear_busqueda_adversaria(&ba1, part);
-    /*while(part->estado == PART_EN_JUEGO){
+    while(part->estado == PART_EN_JUEGO){
         estadoActual(part);
         printf("%i\n", contador_de_ciclo);
 
@@ -182,7 +182,7 @@ void IAvsIA(int empieza, char *p1, char *p2){
             destruir_busqueda_adversaria(&ba2); //destruye la búsqueda
         }
 
-    }*/
+    }
     printf("\n");
     estadoActual(part);
     printf("\n");

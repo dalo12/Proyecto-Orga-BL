@@ -1,4 +1,4 @@
-2#include "partida.h"
+#include "partida.h"
 
 #include <time.h>
 #include <stdlib.h>
