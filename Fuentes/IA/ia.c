@@ -12,6 +12,9 @@ static int valor_utilidad(tEstado e, int jugador_max);
 static tLista estados_sucesores(tEstado e, int ficha_jugador);
 static void diferencia_estados(tEstado anterior, tEstado nuevo, int * x, int * y);
 static tEstado clonar_estado(tEstado e);
+void fEliminar(tElemento e);
+
+
 
 //------ Inicio funciones auxiliares creadas por la comisión
 
@@ -175,24 +178,24 @@ void proximo_movimiento(tBusquedaAdversaria b, int * x, int * y){
     //Situacion inicial inicializo los atributos reserbar memoria
     tNodo raiz=a_raiz(b->arbol_busqueda);
     tLista sucesores=a_hijos(b->arbol_busqueda,raiz);
-    int sucAExplorar=l_longitud(sucesores);
-    tLista posListaSuc=primera(sucesores);
-    int modo_sucesor=l_recup(sucesores,posListaSuc);
-    tLista estados_sucesor=a_recup(b->arbol_busqueda,modo_sucesor);
-    int estado_gana;
-    int estado_pierde;
-    int estado_empata;
-    int toReturn;
+    int sucAExplorar=0;//l_longitud(sucesores);
+    tLista posListaSuc=l_primera(sucesores);
+    tLista modo_sucesor=l_recuperar(sucesores,posListaSuc);
+    tEstado estados_sucesor=a_recuperar(b->arbol_busqueda->raiz,modo_sucesor);
+    int estado_gana=NULL;
+    int estado_pierde=NULL;
+    int estado_empata=NULL;
+    int toReturn=NULL;
 
     //Recorro la lista de hijos
     while(sucAExplorar>0 && estado_gana==NULL){
         sucAExplorar--;
-        if(estados_sucesor->utilidad=IA_GANA_MAX){
-            esta_gana=estados_sucesor;
+        if(estados_sucesor->utilidad==IA_GANA_MAX){
+            estado_gana=estados_sucesor;
         }
         else{
             if(estados_sucesor->utilidad=IA_EMPATA_MAX){
-                estado_empate=estados_sucesor;
+                estado_empata=estados_sucesor;
             }
             else{
                 if(estados_sucesor->utilidad=IA_PIERDE_MAX){
@@ -215,7 +218,6 @@ void proximo_movimiento(tBusquedaAdversaria b, int * x, int * y){
                 toReturn=estado_pierde;
                 }
             }
-            est
         return toReturn;
 
     }
@@ -227,8 +229,15 @@ void proximo_movimiento(tBusquedaAdversaria b, int * x, int * y){
 >>>>>  A IMPLEMENTAR   <<<<<
 **/
 void destruir_busqueda_adversaria(tBusquedaAdversaria * b){
-
-
+        tArbol a=(*b)->arbol_busqueda;
+        a_destruir(&a, &fEliminar);
+        free(b);
+}
+void fEliminar(tElemento e){
+    tEstado n = (tEstado) e;
+    free(n->grilla);
+    free(n->utilidad);
+    free(n);
 
 }
 
@@ -263,17 +272,17 @@ static void crear_sucesores_min_max(tArbol a, tNodo n, int es_max, int alpha, in
     int mejor_valor_sucesor;
     int valor_sucesor;
     tLista estado_sucesor=a_hijos(a,n);// tengo q usar estado_sucesor de ia
-    int sucAExplorar=l_longitud(sucesores);// se necesita ?
+    int sucAExplorar=0;//l_longitud(sucesores);// se necesita ?
 
    if(n->elemento!=IA_NO_TERMINO){
-        return valor_utilidad(n->elemento);//el elemento seria el valor de utilidad ==???
+        return valor_utilidad(n->elemento,es_max);//el elemento seria el valor de utilidad ==???
    }
    if(es_max){
     mejor_valor_sucesor=IA_INFINITO_NEG;//ES CORRECTO USAR INFINITO NEG?;
     while(sucAExplorar>0){// es correcto minmaz y max y lo demas xd
-        valor_sucesor=minmax(estado_sucesor,false,alpha,beta);//es correcto el false o a que hace referencia
-        mejor_valor_sucesor=max(mejor_valor_sucesor,valor_sucesor);
-        alpha=max(alpha,mejor_valor_sucesor);
+        //valor_sucesor=minmax(estado_sucesor,0,alpha,beta);//es correcto el false o a que hace referencia
+        //mejor_valor_sucesor=max(mejor_valor_sucesor,valor_sucesor);
+       // alpha=max(alpha,mejor_valor_sucesor);
         sucAExplorar++;
         if(beta<=alpha){
             return mejor_valor_sucesor;
@@ -282,9 +291,9 @@ static void crear_sucesores_min_max(tArbol a, tNodo n, int es_max, int alpha, in
    }else{
         mejor_valor_sucesor=IA_INFINITO_POS;//ES CORRECTO SERIA INFINITO + ??
         while(sucAExplorar>0){
-            valor_sucesor=minmax(estado_sucesor,true,alpha,beta);
-            mejor_valor_sucesor=min(mejor_valor_sucesor,valor_sucesor);
-            alpha=min(alpha,mejor_valor_sucesor);
+           // valor_sucesor=minmax(estado_sucesor,1,alpha,beta);
+           // mejor_valor_sucesor=min(mejor_valor_sucesor,valor_sucesor);
+            //alpha=min(alpha,mejor_valor_sucesor);
             sucAExplorar++;
             if(beta<=alpha){
                 return mejor_valor_sucesor;
@@ -350,7 +359,7 @@ static tLista estados_sucesores(tEstado e, int ficha_jugador){
         if(r % 2){ //genero la lista de sucesores de una manera "aleatoria"
             l_insertar(lista_sucesores, l_primera(lista_sucesores), sucesor);
         }else{
-            l_insertar(lista_sucesores, l_ultima(lista_sucesores), sucesor);
+            l_insertar(lista_sucesores, l_fin(lista_sucesores), sucesor);
         }
     }
 

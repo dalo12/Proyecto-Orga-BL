@@ -40,3 +40,44 @@
 	"arbol.h"
 	"partida.h"
 
+1572652671 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/arbol.c
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1572652671 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/arbol.h
+	"lista.h"
+
+1572652671 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/lista.h
+
+1572756308 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/ia.c
+	<stdlib.h>
+	<stdio.h>
+	"lista.h"
+	"arbol.h"
+	<time.h>
+	"ia.h"
+
+1572652671 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/ia.h
+	"arbol.h"
+	"partida.h"
+
+1572652671 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/partida.h
+
+1572652671 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1572741794 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/main.c
+	<stdio.h>
+	<stdlib.h>
+	"partida.h"
+	"ia.h"
+
+1572762336 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/partida.c
+	"partida.h"
+	<time.h>
+	<stdlib.h>
+	<stdio.h>
+

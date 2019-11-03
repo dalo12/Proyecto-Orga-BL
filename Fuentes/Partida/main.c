@@ -53,11 +53,14 @@ int main()
     printf("\n");
     if(part->estado == PART_GANA_JUGADOR_1){
         printf("PLAYER 1 GANA! Felicidades %s!", part->nombre_jugador_1);
+        finalizar_partida(&part);
     }else if(part->estado == PART_GANA_JUGADOR_2){
         printf("PLAYER 2 GANA! Felicidades %s!", part->nombre_jugador_2);
-    }else{
-        printf("ES UN EMPATE!");
-    }
+        finalizar_partida(&part);
+        }else{
+            printf("ES UN EMPATE!");
+            finalizar_partida(&part);
+        }
 
     return 0;
 }
