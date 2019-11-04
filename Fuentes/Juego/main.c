@@ -119,7 +119,7 @@ void userVsIA(int empieza, char *p1, char *p2){
                 }
             }while(error_movimiento == PART_MOVIMIENTO_ERROR);
         }else{
-            printf("\nJuega IA");
+            printf("\nJuega IA \n");
 
             crear_busqueda_adversaria(&ba, part); //genera la búsqueda del mejor movimiento
            proximo_movimiento(ba, &x_ia, &y_ia); //encuentra el mejor movimiento
@@ -167,14 +167,14 @@ void IAvsIA(int empieza, char *p1, char *p2){
 
         crear_busqueda_adversaria(&ba1, part);
         if(part->turno_de == PART_JUGADOR_1){
-            printf("\nJuega IA 1");
+            printf("\nJuega IA 1 \n");
 
             crear_busqueda_adversaria(&ba1, part); //genera la búsqueda del mejor movimiento
             proximo_movimiento(ba1, &x_ia1, &y_ia1); //encuentra el mejor movimiento
             nuevo_movimiento(part, x_ia1, y_ia1); //mueve hacia el mejor movimiento
             destruir_busqueda_adversaria(&ba1); //destruye la búsqueda
         }else{
-            printf("\nJuega IA 2");
+            printf("\nJuega IA 2 \n");
 
             crear_busqueda_adversaria(&ba2, part); //genera la búsqueda del mejor movimiento
             proximo_movimiento(ba2, &x_ia2, &y_ia2); //encuentra el mejor movimiento
