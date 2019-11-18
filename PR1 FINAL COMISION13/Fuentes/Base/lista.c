@@ -46,6 +46,7 @@ extern void l_eliminar(tLista l, tPosicion p, void (*fEliminar)(tElemento)){//El
     p->siguiente=aux->siguiente;//P ahora apunta al siguiente de aux es decir se saltea aux
     fEliminar(aux->elemento);
     aux->siguiente = NULL;
+    //aux->siguiente = NULL;
     free(aux);//Libero el espacio de aux(lo elimino)
 }
 
@@ -81,7 +82,7 @@ extern tElemento l_recuperar(tLista l, tPosicion p){
  Si L es vacía, primera(L) = ultima(L) = fin(L).
 **/
 extern tPosicion l_primera(tLista l){
-    return l;
+    return l;//Devuelve el nodo dami ??????
 
 
 }

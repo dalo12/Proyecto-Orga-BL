@@ -10,9 +10,9 @@ recorrido en preorden.
 **/
 static void aux_destruir(tNodo n, void(*fEliminar)(tElemento)){
     tLista l = n->hijos;
-    tPosicion p;
+
     if(l != NULL){
-        p = l_primera(l);
+        tPosicion p = l_primera(l);
         tNodo h;
 
         /*Este while actúa igual que un foreach para la lista de hijos de n*/
@@ -26,7 +26,6 @@ static void aux_destruir(tNodo n, void(*fEliminar)(tElemento)){
         n->padre = NULL;
         fEliminar(n->elemento);
         free(n);
-        free(l);//Elimino la lista
     }
 }
 
@@ -123,6 +122,9 @@ extern void crear_raiz(tArbol a, tElemento e){
     root->padre=NULL;
     root->hijos=l;
     a->raiz = root;
+    //a->raiz->elemento=e;
+    //a->raiz->padre=NULL;
+    //a->raiz->hijos=l;
 
 
 }
@@ -138,6 +140,7 @@ extern void crear_raiz(tArbol a, tElemento e){
 extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
     tLista lista_hijos_padre = np->hijos;
     tPosicion pos_nh = l_primera(lista_hijos_padre);
+    //tPosicion pos_anterior;//Pos anterior
     tNodo aInsertar = (tNodo)malloc(sizeof(struct nodo));
     int encontrado = 0;
 
@@ -150,12 +153,18 @@ extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
     if(nh == NULL){//Si el hermano es nulo inserto al final
         l_insertar(lista_hijos_padre,l_fin(lista_hijos_padre), aInsertar);
     }else{//Si no es nulo recorro la lista de hijos hasta encontrar
+        //tNodo posible_nh = l_recuperar(lista_hijos_padre, pos_nh);
         while(pos_nh != l_fin(lista_hijos_padre) && !encontrado){
             if(l_recuperar(lista_hijos_padre, pos_nh) == nh){
                 encontrado = 1;
             }else{
                 pos_nh = l_siguiente(lista_hijos_padre, pos_nh);
             }
+            /*
+            //pos_anterior = pos_hijo_padre;//A pos anterior le asigno la posición anterior de hijo padre
+            posible_nh = l_recuperar(lista_hijos_padre, pos_nh);
+            pos_nh = l_siguiente(lista_hijos_padre,pos_nh);
+            */
         }
         if(encontrado){//Si encuentro al hermano inserto en la lista
             l_insertar(lista_hijos_padre, pos_nh, aInsertar);
@@ -177,17 +186,6 @@ extern tNodo a_insertar(tArbol a, tNodo np, tNodo nh, tElemento e){
 
 extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
     tPosicion pos_hijo = l_primera(n->hijos);
-    tPosicion pos_hijo_unico;
-    tNodo hijo_raiz;
-    tPosicion pos_hermano_n;
-    tNodo hermano_n;
-    tPosicion pos_n ;
-    int encontrado ;
-    tNodo padre_n ;
-    tLista lista_hermanos_n ;
-    tLista lista_hijos_n ;
-    tPosicion pos_hijo_n ;
-    tNodo hijo_n;
 
     if(n == a->raiz){
     // ---- CASO 2 ----
@@ -206,8 +204,8 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
 
             //Sino, la reemplazo por su hijo
 
-             pos_hijo_unico = l_primera(a->raiz->hijos);
-             hijo_raiz = l_recuperar(a->raiz->hijos, pos_hijo_unico);
+            tPosicion pos_hijo_unico = l_primera(a->raiz->hijos);
+            tNodo hijo_raiz = l_recuperar(a->raiz->hijos, pos_hijo_unico);
 
             fEliminar(n->elemento);
             eliminarNodo(n); //elimino al nodo con mi función especial
@@ -218,14 +216,14 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
     }else{
     // ---- CASO 3 ----
 
-        padre_n = n->padre;
-        lista_hermanos_n = padre_n->hijos;
+        tNodo padre_n = n->padre;
+        tLista lista_hermanos_n = padre_n->hijos;
 
         //busco la posición de n en la lista de hijos de su padre
-        pos_hermano_n = l_primera(lista_hermanos_n);
-        hermano_n;
-        pos_n = NULL;
-        encontrado = 0;
+        tPosicion pos_hermano_n = l_primera(lista_hermanos_n);
+        tNodo hermano_n;
+        tPosicion pos_n = NULL;
+        int encontrado = 0;
 
         while(pos_hermano_n != l_fin(lista_hermanos_n) && !encontrado){
             hermano_n = l_recuperar(lista_hermanos_n, pos_hermano_n);
@@ -237,9 +235,9 @@ extern void a_eliminar(tArbol a, tNodo n, void (*fEliminar)(tElemento)){
         }
 
         //agrego los hijos de n a la lista de hijos del padre de n
-        lista_hijos_n = n->hijos;
-        pos_hijo_n = l_primera(lista_hijos_n);
-        hijo_n;
+        tLista lista_hijos_n = n->hijos;
+        tPosicion pos_hijo_n = l_primera(lista_hijos_n);
+        tNodo hijo_n;
         if(pos_n != NULL){ //estará de más esta verificación? Por las dudas ...
 
             while(pos_hijo_n != l_fin(lista_hijos_n)){

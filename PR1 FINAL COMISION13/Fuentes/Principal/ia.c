@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "lista.h"
-#include "arbol.h"
+#include "base/lista.h"
+#include "base/arbol.h"
 #include <time.h>
 #include "ia.h"
 
@@ -118,6 +118,7 @@ static int contarVacios(tEstado e){
     return cont;
 }
 
+
 /**
 Hace un nuevo movimiento en el tablero de E a partir de (X,Y)
 @param e Estado actual del tablero
@@ -125,7 +126,7 @@ Hace un nuevo movimiento en el tablero de E a partir de (X,Y)
 @param x Referencia a la posición en el eje x del tablero donde se hizo el último movimiento
 @param y Referencia a la posición en el eje y del tablero donde se hizo el último movimiento
 **/
-static void moverCercano(tEstado e, int valor, int *x, int *y){
+/*static void moverCercano(tEstado e, int valor, int *x, int *y){
     for(int i=0; i<3; i++){
         for(int j=0; j<3; j++){
             if(!(i<=(*x) && j<=(*y))){
@@ -139,6 +140,7 @@ static void moverCercano(tEstado e, int valor, int *x, int *y){
         }
     }
 }
+*/
 //------ Fin funciones auxiliares creadas por la comisión
 
 void crear_busqueda_adversaria(tBusquedaAdversaria * b, tPartida p){
@@ -217,6 +219,7 @@ void destruir_busqueda_adversaria(tBusquedaAdversaria * b){
         tArbol a=(*b)->arbol_busqueda;
         a_destruir(&a, &fEliminar);
         free(*b);
+        *b=NULL;
 }
 void fEliminar(tElemento e){
     if(e!=NULL){
