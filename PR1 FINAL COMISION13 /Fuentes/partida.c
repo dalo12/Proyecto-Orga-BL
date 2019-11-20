@@ -53,7 +53,8 @@ static int comprobarColumnas(tTablero t){
 /**
 Comprueba si algún jugador ganó, comprobando las diagonales del tablero
 @param t Tablero a verificar
-@return El número almacenado en al grilla que está alineado en alguna diagonal
+@return El número almacenado en al grilla que está alineado en alguna2
+ diagonal
 **/
 static int comprobarDiagonales(tTablero t){
     int a_retornar = PART_SIN_MOVIMIENTO;

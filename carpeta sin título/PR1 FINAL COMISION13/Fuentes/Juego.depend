@@ -99,9 +99,9 @@
 	<time.h>
 	"ia.h"
 
-1574111258 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13/Fuentes/ia.h
-	"../base/lista.h"
-	"../base/arbol.h"
+1574203999 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13/Fuentes/ia.h
+	"lista.h"
+	"arbol.h"
 
 1574111258 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13/Fuentes/lista.c
 	<stdio.h>

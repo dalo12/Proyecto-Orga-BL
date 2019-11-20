@@ -1,0 +1,159 @@
+# depslib dependency file v1.0
+1571787371 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/arbol.c
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1571404702 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/arbol.h
+	"lista.h"
+
+1571404719 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/lista.h
+
+1571787419 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1572823297 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/main.c
+	<stdio.h>
+	<stdlib.h>
+	"partida.h"
+	"ia.h"
+
+1571404724 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/partida.h
+
+1572822979 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/partida.c
+	"partida.h"
+	<time.h>
+	<stdlib.h>
+	<stdio.h>
+
+1572823493 source:/home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/ia.c
+	<stdlib.h>
+	<stdio.h>
+	"lista.h"
+	"arbol.h"
+	<time.h>
+	"ia.h"
+
+1571404713 /home/david/Documentos/Code/C/Orga/Proyecto/Proyecto-Orga-BL/Fuentes/Juego/ia.h
+	"arbol.h"
+	"partida.h"
+
+1572652671 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/arbol.c
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1572652671 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/arbol.h
+	"lista.h"
+
+1572652671 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/lista.h
+
+1572756308 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/ia.c
+	<stdlib.h>
+	<stdio.h>
+	"lista.h"
+	"arbol.h"
+	<time.h>
+	"ia.h"
+
+1572652671 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/ia.h
+	"arbol.h"
+	"partida.h"
+
+1572652671 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/partida.h
+
+1572652671 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1572741794 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/main.c
+	<stdio.h>
+	<stdlib.h>
+	"partida.h"
+	"ia.h"
+
+1572762336 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/Fuentes/Juego/partida.c
+	"partida.h"
+	<time.h>
+	<stdlib.h>
+	<stdio.h>
+
+1571787371 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 (2)/Fuentes/arbol.c
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1571404702 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 (2)/Fuentes/arbol.h
+	"lista.h"
+
+1571404719 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 (2)/Fuentes/lista.h
+
+1572823493 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 (2)/Fuentes/ia.c
+	<stdlib.h>
+	<stdio.h>
+	"lista.h"
+	"arbol.h"
+	<time.h>
+	"ia.h"
+
+1571404713 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 (2)/Fuentes/ia.h
+	"arbol.h"
+	"partida.h"
+
+1571404724 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 (2)/Fuentes/partida.h
+
+1571787419 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 (2)/Fuentes/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1572823297 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 (2)/Fuentes/main.c
+	<stdio.h>
+	<stdlib.h>
+	"partida.h"
+	"ia.h"
+
+1571787419 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1571404719 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/lista.h
+
+1572823297 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/main.c
+	<stdio.h>
+	<stdlib.h>
+	"partida.h"
+	"ia.h"
+
+1571404724 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/partida.h
+
+1571404713 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/ia.h
+	"arbol.h"
+	"partida.h"
+
+1571404702 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/arbol.h
+	"lista.h"
+
+1574206505 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/partida.c
+	"partida.h"
+	<time.h>
+	<stdlib.h>
+	<stdio.h>
+
+1574111167 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/arbol.c
+	<stdlib.h>
+	"arbol.h"
+	"lista.h"
+
+1574206051 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/ia.c
+	<stdlib.h>
+	<stdio.h>
+	"lista.h"
+	"arbol.h"
+	<time.h>
+	"ia.h"
+

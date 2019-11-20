@@ -1,8 +1,8 @@
 #ifndef IA_H_INCLUDED
 #define IA_H_INCLUDED
 
-#include "../base/lista.h"
-#include "../base/arbol.h"
+#include "lista.h"
+#include "arbol.h"
 
 // Importante: IA_INFINITO_NEG < IA_PIERDE_MAX < IA_EMPATA_MAX < IA_GANA_MAX < IA_INFINITO_POS
 

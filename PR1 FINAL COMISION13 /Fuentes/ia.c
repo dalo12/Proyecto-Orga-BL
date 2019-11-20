@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "base/lista.h"
-#include "base/arbol.h"
+#include "lista.h"
+#include "arbol.h"
 #include <time.h>
 #include "ia.h"
 
@@ -309,10 +309,12 @@ static tLista estados_sucesores(tEstado e, int ficha_jugador) {
     crear_lista(&list);
     int pos, size;
     srand(time(NULL));
+    int j;
+    int i;
 
     size = 0;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
+    for ( i = 0; i < 3; i++) {
+        for ( j = 0; j < 3; j++) {
             if (e->grilla[i][j] == PART_SIN_MOVIMIENTO) {
                     size++;
                     toCreate = clonar_estado(e);
@@ -344,9 +346,11 @@ de utilidad.
 static tEstado clonar_estado(tEstado e){
     tEstado toReturn = (tEstado) malloc(sizeof(struct estado));
     toReturn->utilidad = e->utilidad;
+    int i;
+    int j;
 
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++)
+    for ( i = 0; i < 3; i++) {
+        for ( j = 0; j < 3; j++)
             toReturn->grilla[i][j] = e->grilla[i][j];
     }
 
