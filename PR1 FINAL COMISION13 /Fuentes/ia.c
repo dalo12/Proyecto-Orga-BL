@@ -18,6 +18,7 @@ int lleno(tEstado estado);
 void fEliminar(tElemento e);
 int MAX(tArbol a, tNodo n, int alpha, int beta, int jugador_max, int jugador_min);
 int MIN(tArbol a, tNodo n, int alpha, int beta, int jugador_max, int jugador_min);
+static int encontrar(tEstado e, int jugador_max);
 
 //Esta funcion permite no eliminar el elemto a la ora de destruir
 void fNoElimina(tElemento elemento) {}
@@ -35,7 +36,7 @@ Comprueba si algún jugador ganó, comprobando las filas del tablero
 @param e Estado del tablero a verificar
 @return El número almacenado en al grilla que está alineado en una fila
 **/
-static int comprobarFilas(tEstado e){
+/*static int comprobarFilas(tEstado e){
     int a_retornar = PART_SIN_MOVIMIENTO;
 
     int victoria = 0;
@@ -58,7 +59,7 @@ static int comprobarFilas(tEstado e){
 Comprueba si algún jugador ganó, comprobando las columnas del tablero
 @param e Estado del tablero a verificar
 @return El número almacenado en al grilla que está alineado en una columna
-**/
+**
 static int comprobarColumnas(tEstado e){
     int a_retornar = PART_SIN_MOVIMIENTO;
     int victoria = 0;
@@ -81,7 +82,7 @@ static int comprobarColumnas(tEstado e){
 Comprueba si algún jugador ganó, comprobando las diagonales del tablero
 @param e Estado actual del tablero a verificar
 @return El número almacenado en al grilla que está alineado en alguna diagonal
-**/
+**
 static int comprobarDiagonales(tEstado e){
     int a_retornar = PART_SIN_MOVIMIENTO;
 
@@ -97,7 +98,7 @@ static int comprobarDiagonales(tEstado e){
     }
 
     return a_retornar;
-}
+}*/
 
 /**
 Cuenta la cantidad de lugares vacíos que quedan en el tablero
@@ -119,28 +120,6 @@ static int contarVacios(tEstado e){
 }
 
 
-/**
-Hace un nuevo movimiento en el tablero de E a partir de (X,Y)
-@param e Estado actual del tablero
-@param valor Valor a asignar a la hora de mover
-@param x Referencia a la posición en el eje x del tablero donde se hizo el último movimiento
-@param y Referencia a la posición en el eje y del tablero donde se hizo el último movimiento
-**/
-/*static void moverCercano(tEstado e, int valor, int *x, int *y){
-    for(int i=0; i<3; i++){
-        for(int j=0; j<3; j++){
-            if(!(i<=(*x) && j<=(*y))){
-                if(e->grilla[i][j] == PART_SIN_MOVIMIENTO){
-                    e->grilla[i][j] = valor;
-                    *x = i;
-                    *y = j;
-                    break;
-                }
-            }
-        }
-    }
-}
-*/
 //------ Fin funciones auxiliares creadas por la comisión
 
 void crear_busqueda_adversaria(tBusquedaAdversaria * b, tPartida p){
@@ -249,9 +228,9 @@ static void ejecutar_min_max(tBusquedaAdversaria b){
 /**
 >>>>>  A IMPLEMENTAR   <<<<<
 Implementa la estrategia del algoritmo Min-Max con podas Alpha-Beta, a partir del estado almacenado en N.
-- A referencia al �rbol de b�squeda adversaria.
-- N referencia al nodo a partir del cual se construye el sub�rbol de b�squeda adversaria.
-- ES_MAX indica si N representa un nodo MAX en el �rbol de b�squeda adversaria.
+- A referencia al arbol de busqueda adversaria.
+- N referencia al nodo a partir del cual se construye el subarbol de b�squeda adversaria.
+- ES_MAX indica si N representa un nodo MAX en el arbol de busqueda adversaria.
 - ALPHA y BETA indican sendos valores correspondientes a los nodos ancestros a N en el �rbol de b�squeda A.
 - JUGADOR_MAX y JUGADOR_MIN indican las fichas con las que juegan los respectivos jugadores.
 **/
@@ -265,12 +244,12 @@ static void crear_sucesores_min_max(tArbol a, tNodo n, int es_max, int alpha, in
 /**
 >>>>>  A IMPLEMENTAR   <<<<<
 Computa el valor de utilidad correspondiente al estado E, y la ficha correspondiente al JUGADOR_MAX, retornado:
-- IA_GANA_MAX si el estado E refleja una jugada en el que el JUGADOR_MAX gan� la partida.
+- IA_GANA_MAX si el estado E refleja una jugada en el que el JUGADOR_MAX gana la partida.
 - IA_EMPATA_MAX si el estado E refleja una jugada en el que el JUGADOR_MAX empate la partida.
 - IA_PIERDE_MAX si el estado E refleja una jugada en el que el JUGADOR_MAX perdi la partida.
 - IA_NO_TERMINO en caso contrario.
 **/
-static int valor_utilidad(tEstado e, int jugador_max) {
+/*static int valor_utilidad(tEstado e, int jugador_max) {
 int resultado = IA_NO_TERMINO;
     int estado_filas = comprobarFilas(e);
     int estado_columnas = comprobarColumnas(e);
@@ -288,7 +267,13 @@ int resultado = IA_NO_TERMINO;
     }
 
     return resultado;
-}
+}*/
+static int valor_utilidad(tEstado e, int jugador_max){
+    int toReturn = IA_EMPATA_MAX;
+    toReturn=encontrar(e,jugador_max);
+    return toReturn;
+
+    }
 
 /**
 >>>>>  A IMPLEMENTAR   <<<<< -> implementado 30/10/2019
@@ -323,9 +308,9 @@ static tLista estados_sucesores(tEstado e, int ficha_jugador) {
                     actual = l_primera(list);
                     fin = l_fin(list);
 
-                    while(pos != 0 && actual != fin) {
+                    while(pos!=0 && actual != fin) {
                         actual = l_siguiente(list, actual);
-                        pos--;
+                       pos--;
                     }
 
                     l_insertar(list, actual, toCreate);
@@ -335,6 +320,8 @@ static tLista estados_sucesores(tEstado e, int ficha_jugador) {
 
     return list;
 }
+
+
 
 
 /**
@@ -487,4 +474,61 @@ int MIN(tArbol a, tNodo n, int alpha, int beta, int jugador_max, int jugador_min
 
     return estado->utilidad;
 }
+static int encontrar(tEstado e, int jugador_max){
+    int i, j;
+    int toReturn = IA_EMPATA_MAX;
 
+    if(e->grilla[0][0]==e->grilla[0][1] && e->grilla[0][0]==e->grilla[0][2] && e->grilla[0][0]!=PART_SIN_MOVIMIENTO)
+        if(e->grilla[0][0]==jugador_max)
+            toReturn = IA_GANA_MAX;
+        else
+            toReturn = IA_PIERDE_MAX;
+    else
+        if(e->grilla[0][0]==e->grilla[1][0] && e->grilla[0][0]==e->grilla[2][0] && e->grilla[0][0]!=PART_SIN_MOVIMIENTO)
+            if(e->grilla[0][0]==jugador_max)
+                toReturn = IA_GANA_MAX;
+            else
+                toReturn = IA_PIERDE_MAX;
+        else
+            if(e->grilla[0][0]==e->grilla[1][1] && e->grilla[0][0]==e->grilla[2][2] && e->grilla[0][0]!=PART_SIN_MOVIMIENTO)
+                if(e->grilla[0][0]==jugador_max)
+                    toReturn = IA_GANA_MAX;
+                else
+                    toReturn = IA_PIERDE_MAX;
+            else
+                if(e->grilla[1][1]==e->grilla[1][0] && e->grilla[1][1]==e->grilla[1][2] && e->grilla[1][1]!=PART_SIN_MOVIMIENTO)
+                    if(e->grilla[1][1]==jugador_max)
+                        toReturn = IA_GANA_MAX;
+                    else
+                        toReturn = IA_PIERDE_MAX;
+                else
+                    if(e->grilla[1][1]==e->grilla[0][1] && e->grilla[1][1]==e->grilla[2][1] && e->grilla[1][1]!=PART_SIN_MOVIMIENTO)
+                        if(e->grilla[1][1]==jugador_max)
+                            toReturn = IA_GANA_MAX;
+                        else
+                            toReturn = IA_PIERDE_MAX;
+                    else
+                        if(e->grilla[1][1]==e->grilla[0][2] && e->grilla[1][1]==e->grilla[2][0] && e->grilla[1][1]!=PART_SIN_MOVIMIENTO)
+                            if(e->grilla[1][1]==jugador_max)
+                                toReturn = IA_GANA_MAX;
+                            else
+                                toReturn = IA_PIERDE_MAX;
+                        else
+                            if(e->grilla[2][2]==e->grilla[1][2] && e->grilla[2][2]==e->grilla[0][2] && e->grilla[2][2]!=PART_SIN_MOVIMIENTO)
+                                if(e->grilla[2][2]==jugador_max)
+                                    toReturn = IA_GANA_MAX;
+                                else
+                                    toReturn = IA_PIERDE_MAX;
+                            else
+                                if(e->grilla[2][2]==e->grilla[2][1] && e->grilla[2][2]==e->grilla[2][0] && e->grilla[2][2]!=PART_SIN_MOVIMIENTO)
+                                    if(e->grilla[2][2]==jugador_max)
+                                        toReturn = IA_GANA_MAX;
+                                    else
+                                        toReturn = IA_PIERDE_MAX;
+                                else
+                                    for(i=0; i<3; i++)
+                                        for(j=0; j<3; j++)
+                                            if(e->grilla[i][j]==PART_SIN_MOVIMIENTO)
+                                                toReturn = IA_NO_TERMINO;
+            return toReturn;
+    }

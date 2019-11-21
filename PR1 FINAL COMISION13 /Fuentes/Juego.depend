@@ -138,18 +138,18 @@
 1571404702 /home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/arbol.h
 	"lista.h"
 
-1574206505 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/partida.c
+1574362385 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/partida.c
 	"partida.h"
 	<time.h>
 	<stdlib.h>
 	<stdio.h>
 
-1574111167 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/arbol.c
+1574207928 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/arbol.c
 	<stdlib.h>
 	"arbol.h"
 	"lista.h"
 
-1574206051 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/ia.c
+1574364039 source:/home/diego/Documentos/PROGRAMAS EN C/Proyecto-Orga-BL/PR1 FINAL COMISION13 /Fuentes/ia.c
 	<stdlib.h>
 	<stdio.h>
 	"lista.h"

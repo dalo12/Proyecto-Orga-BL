@@ -1,0 +1,6 @@
+Comision 13.
+
+Se cambio el aux_destruir eliminando la lista tal como se solicito.
+Se quitaron las variables del medio del codigo, para hacerlo mas legible tal como se solicito.
+Se modificaron aspectos de la ia para que no te deje ganar.(Al probarlo varias veces no encontramos ningun tipo de error, pero no estamos completamente seguros de haber solucionado lo pedido).
+

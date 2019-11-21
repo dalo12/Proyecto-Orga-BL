@@ -215,10 +215,6 @@ Finaliza la partida referenciada por P, liberando toda la memoria utilizada.
 extern void finalizar_partida(tPartida * p){
     (*p)->estado = 0;
     (*p)->modo_partida = 0;
-    /*for(int i=0; i<50; i++){
-        (*p)->nombre_jugador_1[i] = NULL;
-        (*p)->nombre_jugador_2[i] = NULL;
-    } */ //Necesario? Me genera warnings
     (*p)->nombre_jugador_1[0] = '\0';
     (*p)->nombre_jugador_2[0] = '\0';
     for(int i=0; i<3; i++){
